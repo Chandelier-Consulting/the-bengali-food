@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import OrderOnlineButton from "./OrderOnlineButton";
+import { useSiteContent } from "./SiteContentProvider";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -21,6 +22,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const isHome = pathname === "/";
+  const { settings } = useSiteContent();
 
   useEffect(() => {
     return scrollY.on("change", (latest) => setIsScrolled(latest > 24));
@@ -45,9 +47,9 @@ export default function Navbar() {
         <Link
           href="/"
           className="flex shrink-0 items-center gap-3 text-lg font-extrabold tracking-normal text-white transition-colors sm:text-xl"
-          aria-label="The Bengali Food home"
+          aria-label={`${settings?.businessName ?? "Restaurant"} home`}
         >
-          <span className="text-primary">The Bengali</span> <span className="text-cream">Food</span>
+          <span className="text-primary">{settings?.businessName ?? "Loading"}</span>
         </Link>
 
         <div className="hidden min-w-0 flex-1 items-center justify-center lg:flex">

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Footer from "@/components/Footer";
 import MobileActionBar from "@/components/MobileActionBar";
 import Navbar from "@/components/Navbar";
+import { SiteContentProvider } from "@/components/SiteContentProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -75,12 +76,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
-        <Navbar />
+        <SiteContentProvider><Navbar />
         <div className="flex min-h-screen flex-col">
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
-        <MobileActionBar />
+        <MobileActionBar /></SiteContentProvider>
       </body>
     </html>
   );

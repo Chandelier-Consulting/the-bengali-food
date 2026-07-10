@@ -3,21 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBookOpen, FaLocationDot, FaTruckFast } from "react-icons/fa6";
-import { orderUrl } from "@/lib/site-content";
-
-const actions = [
-  { href: orderUrl, label: "Order", icon: FaTruckFast, external: true },
-  { href: "/menu", label: "Menu", icon: FaBookOpen },
-  {
-    href: "/location",
-    label: "Info",
-    icon: FaLocationDot,
-    external: true,
-  },
-];
+import { useSiteContent } from "./SiteContentProvider";
 
 export default function MobileActionBar() {
   const pathname = usePathname();
+  const { settings } = useSiteContent();
+  const actions = settings ? [{ href: settings.orderUrl, label: "Order", icon: FaTruckFast, external: true }, { href: "/menu", label: "Menu", icon: FaBookOpen }, { href: "/location", label: "Info", icon: FaLocationDot }] : [];
 
   if (pathname.startsWith("/dashboard")) {
     return null;

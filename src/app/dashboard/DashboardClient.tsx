@@ -86,6 +86,8 @@ export default function DashboardClient({
   const [menuDirty, setMenuDirty] = useState(false);
   const [sectionUploads, setSectionUploads] = useState<Record<string, File | null>>({});
   const [itemUploads, setItemUploads] = useState<Record<string, File | null>>({});
+  const [settingsJson, setSettingsJson] = useState("{}");
+  const [settingsStatus, setSettingsStatus] = useState("");
   const [savingSections, startSavingSections] = useTransition();
   const [savingMenu, startSavingMenu] = useTransition();
   const managerConnected = firebaseReady && Boolean(db);
@@ -119,6 +121,7 @@ export default function DashboardClient({
 
     const unsubSettings = onSnapshot(doc(db, "siteContent", "settings"), (snapshot) => {
       const settings = snapshot.data();
+      if (!sectionDirty && !savingSections) setSettingsJson(JSON.stringify(settings ?? {}, null, 2));
       const images = settings?.images as Record<string, string> | undefined;
       if (!sectionDirty && !savingSections) {
         if (images) {
@@ -280,6 +283,14 @@ export default function DashboardClient({
     });
   };
 
+  const saveSettings = async () => {
+    if (!db) return;
+    try {
+      await setDoc(doc(db, "siteContent", "settings"), { ...JSON.parse(settingsJson), updatedAt: new Date().toISOString() });
+      setSettingsStatus("Site settings saved.");
+    } catch { setSettingsStatus("Settings must be valid JSON."); }
+  };
+
   return (
     <div className="mx-auto max-w-7xl">
       <div className="flex flex-col gap-4 border-b border-white/10 pb-8 lg:flex-row lg:items-end lg:justify-between">
@@ -334,6 +345,13 @@ export default function DashboardClient({
         {sectionStatus ? <p className="self-center text-sm font-bold text-accent">{sectionStatus}</p> : null}
         {menuStatus ? <p className="self-center text-sm font-bold text-accent">{menuStatus}</p> : null}
       </div>
+
+      <section className="mt-8 rounded-3xl border border-white/10 bg-white/[0.06] p-6">
+        <p className="text-xs font-black uppercase tracking-[0.18em] text-accent">Single source of truth</p>
+        <h2 className="mt-2 text-3xl font-black">Site settings</h2>
+        <textarea value={settingsJson} onChange={(event) => setSettingsJson(event.target.value)} rows={14} className="mt-5 w-full rounded-2xl border border-white/10 bg-[#11100f] p-4 font-mono text-xs text-white" />
+        <div className="mt-4 flex gap-4"><button type="button" onClick={saveSettings} className="min-h-11 rounded-full bg-primary px-5 text-sm font-black text-white">Save site settings</button><p className="self-center text-sm font-bold text-accent">{settingsStatus}</p></div>
+      </section>
 
       <section className="mt-8 rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-[0_22px_70px_rgba(0,0,0,.22)]">
         <div className="flex flex-col gap-2">
