@@ -6,7 +6,7 @@ const read = (file) => readFile(new URL(file, import.meta.url), "utf8");
 test("seed script is the restaurant content source", async () => {
   const seed = await read("../scripts/seed-firestore.mjs");
   const site = await read("../src/lib/site-content.ts");
-  assert.match(seed, /The Bengali Food/); assert.match(seed, /Shorshe Chingri/); assert.match(seed, /order\.online\/store\/the-bengali-food/);
+  assert.match(seed, /The Bengali Food/); assert.match(seed, /Shorshe Chingri/); assert.match(seed, /Chingri Malaikari/); assert.match(seed, /Gurer Rasgulla/); assert.match(seed, /order\.online\/store\/the-bengali-food/);
   assert.doesNotMatch(site, /The Bengali Food/);
 });
 test("public pages subscribe to Firestore-backed content", async () => {
