@@ -8,7 +8,7 @@ import type { DashboardImageOption, DashboardImageSlot, DashboardMenuItem } from
 import { db, firebaseReady } from "@/lib/firebase-client";
 import { resolveCateringMenuHeading } from "@/lib/section-content";
 
-const baseCategories = ["Breakfast", "Tacos", "Mains", "Seafood Cocktails", "Drinks", "Catering"];
+const baseCategories = ["Fish & Seafood", "Vegetarian Comforts", "Bengali Classics"];
 
 function slugify(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

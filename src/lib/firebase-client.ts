@@ -3,13 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAGRUIWpuGmHRgRH-SXHmF8n3WSRpeXQV0",
-  authDomain: "tomys-kitchen.firebaseapp.com",
-  projectId: "tomys-kitchen",
-  storageBucket: "tomys-kitchen.firebasestorage.app",
-  messagingSenderId: "688845926740",
-  appId: "1:688845926740:web:5fffda536bf1679bc1d8c1",
-  measurementId: "G-CRQR2R4R9M",
+  apiKey: "AIzaSyAc-ceSvDfItj4ndimhCh6lz0_s07REFfo",
+  authDomain: "the-bengali-food.firebaseapp.com",
+  projectId: "the-bengali-food",
+  storageBucket: "the-bengali-food.firebasestorage.app",
+  messagingSenderId: "439739291044",
+  appId: "1:439739291044:web:7c342926c4c244f4ce9d31",
+  measurementId: "G-FQHSG9DJHS",
 };
 
 export const firebaseReady = Boolean(firebaseConfig.projectId);

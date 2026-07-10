@@ -52,3 +52,12 @@ test("home and menu keep responsive media and accessible navigation", async () =
   assert.match(source, /aria-label="Menu categories"/);
   assert.match(source, /aria-label="The Bengali Food home"/);
 });
+
+test("Firebase is configured for The Bengali Food and protects writes", async () => {
+  const source = `${await read("../src/lib/firebase-client.ts")}\n${await read("../scripts/seed-firestore.mjs")}\n${await read("../.firebaserc")}`;
+  const rules = `${await read("../firestore.rules")}\n${await read("../storage.rules")}`;
+  assert.match(source, /the-bengali-food/);
+  assert.doesNotMatch(source, /tomys-kitchen/);
+  assert.match(rules, /request\.auth != null/);
+  assert.doesNotMatch(rules, /allow write: if true/);
+});
