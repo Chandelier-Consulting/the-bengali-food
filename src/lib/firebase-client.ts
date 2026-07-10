@@ -3,13 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAc-ceSvDfItj4ndimhCh6lz0_s07REFfo",
-  authDomain: "the-bengali-food.firebaseapp.com",
-  projectId: "the-bengali-food",
-  storageBucket: "the-bengali-food.firebasestorage.app",
-  messagingSenderId: "439739291044",
-  appId: "1:439739291044:web:7c342926c4c244f4ce9d31",
-  measurementId: "G-FQHSG9DJHS",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 export const firebaseReady = Boolean(firebaseConfig.projectId);

@@ -1,4 +1,4 @@
-import { applicationDefault, initializeApp } from "firebase-admin/app";
+import { cert, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
 const hero = "/images/bengali/bengali-feast-hero.png";
@@ -16,7 +16,11 @@ const categories = [
   ["Vegetarian Comforts", [["Chhola'r Dal", "$8", "Bengal gram lentils tempered with warm spices."], ["Begun Bhaji", "See ordering menu", "Seasoned fried eggplant."], ["Shukto", "See ordering menu", "A gently spiced Bengali vegetable stew."]]],
   ["Bengali Classics", [["Muri Ghonto", "See ordering menu", "A classic rohu fish head curry with rice and spices."]]],
 ];
-const app = initializeApp({ credential: applicationDefault(), projectId: "the-bengali-food" }); const db = getFirestore(app); const batch = db.batch();
+const projectId = process.env.FIREBASE_ADMIN_PROJECT_ID;
+const clientEmail = process.env.FIREBASE_ADMIN_CLIENT_EMAIL;
+const privateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY?.replace(/\\n/g, "\n");
+if (!projectId || !clientEmail || !privateKey) throw new Error("Missing Firebase Admin credentials in .env.local.");
+const app = initializeApp({ credential: cert({ projectId, clientEmail, privateKey }) }); const db = getFirestore(app); const batch = db.batch();
 batch.set(db.doc("siteContent/settings"), { ...settings, updatedAt: new Date().toISOString() });
 for (const [category, items] of categories) {
   items.forEach(([name, price, description], sortOrder) => {

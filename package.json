@@ -10,7 +10,7 @@
     "lint": "eslint",
     "firebase:login": "npx firebase-tools login",
     "firebase:rules": "npx firebase-tools deploy --only firestore:rules,storage",
-    "firebase:seed": "node scripts/seed-firestore.mjs"
+    "firebase:seed": "node --env-file=.env.local scripts/seed-firestore.mjs"
   },
   "dependencies": {
     "firebase": "^12.15.0",
