@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Authentic Bengali cuisine in San Jose for pickup, delivery, and gatherings.",
     start_url: "/",
     display: "standalone",
-    background_color: "#142016",
-    theme_color: "#142016",
+    background_color: "#1b1b1e",
+    theme_color: "#1b1b1e",
     categories: ["food", "business"],
     icons: [
       {
