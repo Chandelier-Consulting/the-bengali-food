@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #171615;
-  --foreground: #FFF7EC;
-  --primary: #E45F3C;
-  --primary-hover: #F0784F;
-  --secondary: #FFF7EC;
-  --accent: #F2B84B;
-  --surface: #211F1D;
-  --muted: #DED1BF;
-  --border: #37312B;
-  --kitchen-night: #11100F;
-  --cream: #FFF7EC;
-  --leaf: #6D8B5F;
+  --background: #142016;
+  --foreground: #f8f3e6;
+  --primary: #e7d6a6;
+  --primary-hover: #f4e7bf;
+  --secondary: #f8f3e6;
+  --accent: #e4a72d;
+  --surface: #1d2c20;
+  --muted: #c4c8b9;
+  --border: #3a493a;
+  --kitchen-night: #101811;
+  --cream: #f8f3e6;
+  --leaf: #7d9c69;
 }
 
 @theme inline {
@@ -25,13 +25,13 @@
   --color-surface: var(--surface);
   --color-muted: var(--muted);
   --color-border: var(--border);
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

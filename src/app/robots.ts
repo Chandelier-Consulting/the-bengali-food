@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/dashboard"],
       },
     ],
-    sitemap: "https://tomyskitchen.example/sitemap.xml",
+    sitemap: "https://thebengalifood.example/sitemap.xml",
   };
 }

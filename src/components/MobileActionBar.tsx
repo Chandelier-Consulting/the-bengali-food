@@ -2,16 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaBookOpen, FaLocationDot, FaPhone, FaTruckFast } from "react-icons/fa6";
-import { orderLinks } from "@/lib/site-content";
+import { FaBookOpen, FaLocationDot, FaTruckFast } from "react-icons/fa6";
+import { orderUrl } from "@/lib/site-content";
 
 const actions = [
-  { href: "tel:+16502898628", label: "Call", icon: FaPhone },
-  { href: orderLinks[0].href, label: "Order", icon: FaTruckFast, external: true },
+  { href: orderUrl, label: "Order", icon: FaTruckFast, external: true },
   { href: "/menu", label: "Menu", icon: FaBookOpen },
   {
-    href: "https://www.google.com/maps/search/?api=1&query=239+W+El+Camino+Real+Mountain+View+CA+94040",
-    label: "Map",
+    href: "/location",
+    label: "Info",
     icon: FaLocationDot,
     external: true,
   },
@@ -34,15 +33,6 @@ export default function MobileActionBar() {
           if (action.external) {
             return (
               <a key={action.label} href={action.href} target="_blank" rel="noreferrer" className={className}>
-                <Icon className="text-base text-accent" aria-hidden />
-                {action.label}
-              </a>
-            );
-          }
-
-          if (action.href.startsWith("tel:")) {
-            return (
-              <a key={action.label} href={action.href} className={className}>
                 <Icon className="text-base text-accent" aria-hidden />
                 {action.label}
               </a>

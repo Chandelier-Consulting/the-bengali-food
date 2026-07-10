@@ -2,19 +2,19 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Tomy's Kitchen",
-    short_name: "Tomy's",
-    description: "Mexican food truck in Mountain View serving breakfast, tacos, seafood, and group pickup orders.",
+    name: "The Bengali Food",
+    short_name: "Bengali Food",
+    description: "Authentic Bengali cuisine in San Jose for pickup, delivery, and gatherings.",
     start_url: "/",
     display: "standalone",
-    background_color: "#171615",
-    theme_color: "#E45F3C",
+    background_color: "#142016",
+    theme_color: "#142016",
     categories: ["food", "business"],
     icons: [
       {
-        src: "/images/tomys/logo.jpg",
-        sizes: "828x1042",
-        type: "image/jpeg",
+        src: "/images/bengali/bengali-feast-hero.png",
+        sizes: "1664x936",
+        type: "image/png",
       },
     ],
   };

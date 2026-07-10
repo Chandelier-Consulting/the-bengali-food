@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaInstagram, FaLocationDot, FaPhone } from "react-icons/fa6";
+import { FaLocationDot } from "react-icons/fa6";
 import OrderOnlineButton from "@/components/OrderOnlineButton";
 import Reveal from "@/components/Reveal";
-import { displayPhone } from "@/lib/site-content";
 
 const links = [
   { href: "/", label: "Home" },
@@ -27,15 +26,15 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1.2fr] lg:px-8">
         <Reveal>
           <Link href="/" className="text-2xl font-extrabold text-primary">
-            Tomy&apos;s Kitchen
+            The Bengali Food
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-6 text-white/80">
-            Family owned, fresh Mexican breakfast, tacos, seafood, catering, and daily plates on El Camino Real.
+            Bengali fish curries, lentils, vegetables, and home-style comfort food for pickup, delivery, and gatherings.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <OrderOnlineButton
               className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/14 bg-[#11100f] px-4 text-xs font-black text-white transition hover:bg-white/10"
-              label="See all ordering apps"
+              label="Order pickup or delivery"
             />
           </div>
         </Reveal>
@@ -56,26 +55,13 @@ export default function Footer() {
           <div className="mt-4 grid gap-3 text-sm text-white/82">
             <p className="flex gap-3">
               <FaLocationDot className="mt-1 shrink-0 text-primary" aria-hidden />
-              <span>239 W El Camino Real, Mountain View, CA 94040</span>
+              <span>Serving the San Jose area</span>
             </p>
-            <a className="flex gap-3 hover:text-white" href="tel:+16502898628">
-              <FaPhone className="mt-1 shrink-0 text-primary" aria-hidden />
-              <span>{displayPhone}</span>
-            </a>
-            <a
-              className="flex gap-3 hover:text-white"
-              href="https://www.instagram.com/tomys_kitchen"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaInstagram className="mt-1 shrink-0 text-primary" aria-hidden />
-              <span>@tomys_kitchen</span>
-            </a>
           </div>
         </Reveal>
       </div>
       <Reveal className="border-t border-white/10 px-5 py-5 text-center text-xs text-white/72">
-        © {new Date().getFullYear()} Tomy&apos;s Kitchen. All rights reserved.
+        © {new Date().getFullYear()} The Bengali Food. All rights reserved.
       </Reveal>
     </footer>
   );

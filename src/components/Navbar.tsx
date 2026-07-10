@@ -5,9 +5,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import ManagedImage from "./ManagedImage";
 import OrderOnlineButton from "./OrderOnlineButton";
-import { tomysImages } from "@/lib/site-content";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -47,10 +45,9 @@ export default function Navbar() {
         <Link
           href="/"
           className="flex shrink-0 items-center gap-3 text-lg font-extrabold tracking-normal text-white transition-colors sm:text-xl"
-          aria-label="Tomy's Kitchen home"
+          aria-label="The Bengali Food home"
         >
-          <ManagedImage imageKey="Logo" fallback={tomysImages.logo} alt="" width={44} height={44} priority className="h-11 w-11 rounded-full border border-white/20 object-cover" />
-          <span className="text-primary">Tomy&apos;s</span> <span className="text-cream">Kitchen</span>
+          <span className="text-primary">The Bengali</span> <span className="text-cream">Food</span>
         </Link>
 
         <div className="hidden min-w-0 flex-1 items-center justify-center lg:flex">

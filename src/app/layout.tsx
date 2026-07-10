@@ -11,24 +11,24 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const businessName = "Tomy's Kitchen";
+const businessName = "The Bengali Food";
 const description =
-  "Family-owned Mexican food truck serving fresh breakfast burritos, tacos, seafood, catering, and daily specials from Chef Tomas Tejeda in Mountain View.";
+  "Authentic Bengali cuisine in San Jose, with pickup, delivery, and event catering.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tomyskitchen.example"),
+  metadataBase: new URL("https://thebengalifood.example"),
   title: {
-    default: `${businessName} | Mexican Food Truck in Mountain View`,
+    default: `${businessName} | Authentic Bengali Cuisine in San Jose`,
     template: `%s | ${businessName}`,
   },
   description,
   icons: {
-    icon: "/images/tomys/logo.jpg",
-    shortcut: "/images/tomys/logo.jpg",
-    apple: "/images/tomys/logo.jpg",
+    icon: "/images/bengali/bengali-feast-hero.png",
+    shortcut: "/images/bengali/bengali-feast-hero.png",
+    apple: "/images/bengali/bengali-feast-hero.png",
   },
   openGraph: {
-    title: `${businessName} | Mexican Food Truck in Mountain View`,
+    title: `${businessName} | Authentic Bengali Cuisine in San Jose`,
     description,
     type: "website",
     locale: "en_US",
@@ -37,50 +37,30 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Warm terracotta and gold Tomy's Kitchen brand artwork",
+        alt: "Bengali mustard prawn curry, rice, dal, and eggplant",
       },
     ],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#E45F3C",
+  themeColor: "#142016",
 };
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "FoodTruck",
+  "@type": "Restaurant",
   name: businessName,
-  image: "https://tomyskitchen.example/opengraph-image",
-  telephone: "+16502898628",
+  image: "https://thebengalifood.example/opengraph-image",
   priceRange: "$$",
-  servesCuisine: ["Mexican", "Mediterranean", "Italian", "American", "Continental"],
-  founder: {
-    "@type": "Person",
-    name: "Tomas Tejeda",
-  },
+  servesCuisine: ["Bengali", "Indian"],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "239 W El Camino Real",
-    addressLocality: "Mountain View",
+    addressLocality: "San Jose",
     addressRegion: "CA",
-    postalCode: "94040",
     addressCountry: "US",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "22",
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "08:30",
-      closes: "15:00",
-    },
-  ],
-  sameAs: ["https://www.instagram.com/tomys_kitchen"],
+  sameAs: ["https://order.online/store/the-bengali-food-32130435?pickup=true"],
 };
 
 export default function RootLayout({
