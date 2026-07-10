@@ -164,9 +164,9 @@ html {
   --popover-foreground: oklch(0.96 0.01 85);
   --primary: oklch(0.87 0.09 85);
   --primary-foreground: oklch(0.22 0.01 85);
-  --secondary: oklch(0.28 0.006 285);
-  --secondary-foreground: oklch(0.96 0.01 85);
-  --muted: oklch(0.25 0.006 285);
+  --secondary: oklch(0.96 0.01 85);
+  --secondary-foreground: oklch(0.22 0.01 85);
+  --muted: oklch(0.73 0.01 285);
   --muted-foreground: oklch(0.73 0.01 285);
   --accent: oklch(0.72 0.13 70);
   --accent-foreground: oklch(0.2 0.01 85);
