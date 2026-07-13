@@ -1,0 +1,21 @@
+src/components/ManagedMenuSections.tsx
+  s_f2da16c07146a0::t_47fd5224f89fb6 6,12-27,41-42,44,48-60,62-66,68-70
+src/app/menu/page.tsx
+  s_f2da16c07146a0::t_47fd5224f89fb6 18-25,34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "f3d4b39ff4406cff92202ea5e0eb1b004f064e94",
+  "prompts": {},
+  "sessions": {
+    "s_f2da16c07146a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5a0e-07a1-7b81-94d5-390a085229bc",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Pranav Kannepalli <pranav.kannepalli@gmail.com>"
+    }
+  }
+}
