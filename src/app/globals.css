@@ -153,6 +153,31 @@ html {
   line-height: 0.98;
 }
 
+.page-title {
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
+  font-size: 3.25rem;
+  font-weight: 800;
+  line-height: 0.98;
+}
+
+.section-title {
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.04;
+}
+
+.lead-copy {
+  color: var(--muted);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.75;
+}
+
+.lead-copy-on-dark {
+  color: rgb(255 255 255 / 0.86);
+}
+
 .body-copy {
   color: var(--muted);
   font-size: 1rem;
@@ -176,6 +201,18 @@ html {
   .section-shell {
     min-height: 84svh;
     padding-block: 8rem;
+  }
+
+  .page-title {
+    font-size: 5.25rem;
+  }
+
+  .section-title {
+    font-size: 3.5rem;
+  }
+
+  .lead-copy {
+    font-size: 1.25rem;
   }
 }
 

@@ -31,7 +31,7 @@ test("dashboard explains missing Firebase Auth setup", async () => {
 test("public pages include Tomy's-level content sections", async () => {
   const files = [
     ["../src/components/HomeTruckJourney.tsx", 6],
-    ["../src/app/about/page.tsx", 5],
+    ["../src/app/about/page.tsx", 7],
     ["../src/app/location/page.tsx", 3],
     ["../src/app/group-orders/page.tsx", 5],
     ["../src/app/menu/page.tsx", 3],
@@ -115,6 +115,28 @@ test("public layout uses premium editorial fonts and expansive section sizing", 
   assert.match(css, /width:\s*min\(100%,\s*88rem\)/);
   assert.match(css, /min-height:\s*78svh/);
   assert.match(css, /min-height:\s*84svh/);
+});
+
+test("about page uses shared typography scale and richer editorial content", async () => {
+  const about = await read("../src/app/about/page.tsx");
+  const css = await read("../src/app/globals.css");
+
+  for (const className of ["page-title", "section-title", "lead-copy"]) {
+    assert.match(css, new RegExp(`\\.${className}`));
+    assert.match(about, new RegExp(className));
+  }
+
+  for (const marker of [
+    "The river, the pantry, the rice",
+    "The pantry",
+    "How the meal comes together",
+    "What travels well",
+    "Current menu anchors",
+  ]) {
+    assert.ok(about.includes(marker), `about page is missing ${marker}`);
+  }
+
+  assert.doesNotMatch(about, /text-5xl font-extrabold|text-4xl font-extrabold/g);
 });
 
 test("root layout is not forced into global dark mode", async () => {
