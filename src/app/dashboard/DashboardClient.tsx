@@ -211,7 +211,7 @@ export default function DashboardClient({
 
       await setDoc(
         doc(firestore, "siteContent", "settings"),
-        { images: nextImages, updatedAt: new Date().toISOString() },
+        { images: nextImages },
         { merge: true },
       );
       setImageSelections(nextImages);
@@ -361,9 +361,9 @@ export default function DashboardClient({
           </p>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
+        <div className="mt-6 grid gap-x-4 gap-y-6 md:grid-cols-2 2xl:grid-cols-3">
           {globalSlots.map((slot) => (
-            <article key={slot.key} className="rounded-lg border border-white/10 bg-black/18 p-4">
+            <article key={slot.key} className="border-t border-white/10 pt-4 first:border-t-0 first:pt-0 md:[&:nth-child(2)]:border-t-0 md:[&:nth-child(2)]:pt-0 2xl:[&:nth-child(3)]:border-t-0 2xl:[&:nth-child(3)]:pt-0">
               <PhotoPreview src={imageSelections[slot.key] ?? slot.defaultSrc} alt={slot.label} className="aspect-[4/3] w-full rounded-lg object-cover" />
               <div className="mt-4">
                 <p className="text-sm font-black text-white">{slot.label}</p>
@@ -414,7 +414,7 @@ export default function DashboardClient({
         {groupedMenu.map(({ slot, items }) => (
           <article key={slot.key} className="rounded-lg border border-white/10 bg-white/[0.06] p-4">
             <div className="flex flex-col gap-4 xl:grid xl:grid-cols-[280px_1fr] xl:items-start">
-              <div className="rounded-lg border border-white/10 bg-black/18 p-4">
+              <div>
                 <PhotoPreview src={imageSelections[slot.key] ?? slot.defaultSrc} alt={slot.label} className="aspect-[4/3] w-full rounded-lg object-cover" />
                 {imageChoices.length ? (
                   <label className="mt-4 grid gap-2 text-sm font-black">
@@ -469,10 +469,10 @@ export default function DashboardClient({
                   </button>
                 </div>
 
-                  <div className="mt-4 grid gap-4">
+                  <div className="mt-4 divide-y divide-white/10">
                     {items.length ? (
                       items.map((item) => (
-                      <article key={item.id} className="rounded-lg border border-white/10 bg-black/18 p-4">
+                      <article key={item.id} className="py-4 first:pt-0">
                         <div className="grid gap-4 xl:grid-cols-[180px_1fr_auto]">
                           <div>
                             <PhotoPreview src={item.imageSrc} alt={item.name || "Menu item"} className="aspect-[4/3] w-full rounded-lg object-cover" />
@@ -591,7 +591,7 @@ export default function DashboardClient({
                       </article>
                     ))
                   ) : (
-                    <div className="rounded-lg border border-dashed border-white/10 bg-black/18 p-4 text-sm font-semibold text-white/58">
+                    <div className="border-t border-dashed border-white/10 pt-4 text-sm font-semibold text-white/58">
                       No items in this section yet. Use <span className="font-black text-white">Add item to {slot.key}</span> to put one on the menu.
                     </div>
                   )}

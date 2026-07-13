@@ -27,3 +27,17 @@
 - Confirmed the `invalidItem` validation still requires `imageSrc`.
 - Confirmed all `PhotoPreview` call sites use the required fixed preview class.
 - Confirmed the diff is limited to the requested dashboard client and this report.
+
+## Review Fix Pass
+
+- Flattened nested photo and menu-item panels into unframed, divider-separated dashboard rows.
+- Kept all photo previews at `aspect-[4/3] w-full rounded-lg object-cover`.
+- Preserved the visible per-item photo requirement and `imageSrc` validation.
+- Preserved isolated write boundaries: settings saves `{ images }` only, and menu saves write `menuItems` records only.
+- Verification commands and results:
+  - `npm test`: 10 passed, 2 failed. These remain public-page legacy tests for Task 7:
+    - `tests/responsive-ui.test.mjs`: `../src/components/HomeTruckJourney.tsx has 7 sections, expected at least 8`.
+    - `tests/responsive-ui.test.mjs`: `../src/app/menu/page.tsx has repeated generic card styling`.
+  - `npm run lint`: passed.
+  - `npm run build`: passed.
+  - `curl -sS -o /dev/null -w '%{http_code}\\n' http://localhost:3000/dashboard`: `200`.
