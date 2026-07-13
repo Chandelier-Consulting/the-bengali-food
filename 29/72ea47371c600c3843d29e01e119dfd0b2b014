@@ -1,0 +1,21 @@
+src/app/menu/page.tsx
+  s_f2da16c07146a0::t_5ffd929e4e7aae 46-47,49-51,55
+tests/responsive-ui.test.mjs
+  s_f2da16c07146a0::t_5ffd929e4e7aae 33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "2972ea47371c600c3843d29e01e119dfd0b2b014",
+  "prompts": {},
+  "sessions": {
+    "s_f2da16c07146a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5a0e-07a1-7b81-94d5-390a085229bc",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Pranav Kannepalli <pranav.kannepalli@gmail.com>"
+    }
+  }
+}
