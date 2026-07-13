@@ -1,0 +1,19 @@
+tests/responsive-ui.test.mjs
+  s_f2da16c07146a0::t_d95f4449d64583 70-115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "e7497760574388995b471ce3df05f3b69df3af23",
+  "prompts": {},
+  "sessions": {
+    "s_f2da16c07146a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5a0e-07a1-7b81-94d5-390a085229bc",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "Pranav Kannepalli <pranav.kannepalli@gmail.com>"
+    }
+  }
+}
