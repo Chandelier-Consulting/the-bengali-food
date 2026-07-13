@@ -15,11 +15,11 @@ export default function MobileActionBar() {
   }
 
   return (
-    <nav aria-label="Quick actions" className="fixed inset-x-3 bottom-3 z-50 rounded-[1.35rem] border border-white/10 bg-[#11100f]/94 p-2 shadow-[0_18px_55px_rgba(0,0,0,.38)] backdrop-blur-xl md:hidden">
-      <div className="grid grid-cols-4 gap-1">
+    <nav aria-label="Quick actions" className="fixed inset-x-3 bottom-3 z-50 rounded-lg border border-border bg-surface/96 p-2 shadow-[0_14px_36px_rgba(37,23,17,.18)] backdrop-blur-xl md:hidden">
+      <div className="grid grid-cols-3 gap-1">
         {actions.map((action) => {
           const Icon = action.icon;
-          const className = "grid min-h-14 place-items-center gap-1 rounded-2xl px-2 py-2 text-[0.7rem] font-black uppercase tracking-[0.08em] text-white/72 transition hover:bg-white/10 hover:text-white";
+          const className = "grid min-h-14 place-items-center gap-1 rounded-lg px-2 py-2 text-[0.72rem] font-black uppercase tracking-[0.08em] text-muted-foreground transition hover:bg-background hover:text-secondary";
 
           if (action.external) {
             return (

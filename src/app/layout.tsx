@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1b1b1e",
+  themeColor: "#f7f0e4",
 };
 
 const localBusinessSchema = {
@@ -73,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("dark", "h-full", "scroll-smooth", inter.variable, "font-sans", geist.variable)}>
+    <html lang="en" className={cn("h-full", "scroll-smooth", inter.variable, "font-sans", geist.variable)}>
       <body className="min-h-full bg-background font-sans text-foreground antialiased">
         <script
           type="application/ld+json"

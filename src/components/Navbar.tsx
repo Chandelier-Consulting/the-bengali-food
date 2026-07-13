@@ -35,20 +35,15 @@ export default function Navbar() {
 
   return (
     <motion.header
-      animate={{
-        backgroundColor: solidNav ? "rgba(17,16,15,0.92)" : "rgba(17,16,15,0)",
-        boxShadow: solidNav ? "0 18px 44px rgba(0,0,0,0.24)" : "0 0 0 rgba(0,0,0,0)",
-      }}
-      transition={{ duration: 0.25 }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-white/10 backdrop-blur-md"
+      className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-background/92 backdrop-blur-md"
     >
       <nav className="mx-auto flex h-18 max-w-[92rem] items-center justify-between gap-6 px-5 sm:px-6 xl:px-8">
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-3 text-lg font-extrabold tracking-normal text-white transition-colors sm:text-xl"
-          aria-label={`${settings?.businessName ?? "Restaurant"} home`}
+          className="flex shrink-0 items-center gap-3 text-lg font-extrabold text-secondary transition-colors sm:text-xl"
+          aria-label={`${settings?.businessName ?? "The Bengali Food"} home`}
         >
-          <span className="text-primary">{settings?.businessName ?? "Loading"}</span>
+          <span>{settings?.businessName ?? "The Bengali Food"}</span>
         </Link>
 
         <div className="hidden min-w-0 flex-1 items-center justify-center lg:flex">
@@ -59,13 +54,13 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="relative whitespace-nowrap text-sm font-bold text-white/78 transition-colors hover:text-white"
+                  className="relative whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-secondary"
                 >
                   {link.label}
                   {active ? (
                     <motion.span
                       layoutId="active-nav"
-                      className="absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-accent"
+                      className="absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-primary"
                     />
                   ) : null}
                 </Link>
@@ -76,7 +71,7 @@ export default function Navbar() {
 
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
           <OrderOnlineButton
-            className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full bg-primary px-5 text-sm font-extrabold text-white transition hover:bg-primary-hover"
+            className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-lg bg-primary px-5 text-sm font-extrabold text-primary-foreground transition hover:bg-primary-hover"
           />
         </div>
 
@@ -87,8 +82,8 @@ export default function Navbar() {
           onClick={() => setIsOpen((value) => !value)}
           className={`grid h-11 w-11 shrink-0 place-items-center rounded-full border lg:hidden ${
             solidNav
-              ? "border-white/15 text-white hover:bg-white/10"
-              : "border-white/30 text-white hover:bg-white/10"
+              ? "border-border text-secondary hover:bg-surface"
+              : "border-border text-secondary hover:bg-surface"
           }`}
         >
           {isOpen ? <FaTimes aria-hidden /> : <FaBars aria-hidden />}
@@ -103,7 +98,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.2 }}
-            className="max-h-[calc(100svh-5rem)] overflow-y-auto border-t border-white/10 bg-[rgba(17,16,15,0.98)] px-5 pb-6 shadow-xl lg:hidden"
+            className="max-h-[calc(100svh-5rem)] overflow-y-auto border-t border-border bg-background px-5 pb-6 shadow-xl lg:hidden"
           >
             <div className="mx-auto flex max-w-6xl flex-col gap-2 pt-3">
               {navLinks.map((link) => (
@@ -113,15 +108,15 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={`rounded-lg px-3 py-3 text-base font-bold ${
                     pathname === link.href
-                      ? "bg-white/10 text-accent"
-                      : "text-white/78 hover:bg-white/10 hover:text-white"
+                      ? "bg-surface text-primary"
+                      : "text-muted-foreground hover:bg-surface hover:text-secondary"
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
               <OrderOnlineButton
-                className="mt-2 rounded-lg bg-primary px-3 py-3 text-base font-black text-white"
+                className="mt-2 rounded-lg bg-primary px-3 py-3 text-base font-black text-primary-foreground"
                 label="Order online"
                 onOpen={() => setIsOpen(false)}
               />
