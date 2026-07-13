@@ -1,0 +1,40 @@
+src/app/location/page.tsx
+  s_f2da16c07146a0::t_19e29f514936ef 2-81
+src/components/ManagedMenuSections.tsx
+  s_f2da16c07146a0::t_e86109d5ba524d 3,6-55
+src/components/HomeTruckJourney.tsx
+  s_f2da16c07146a0::t_a80d6b282d9a22 6,12-48,56-60,65,67,69-73,78-91,96-107,109-116,118,121,135-173,175-220
+src/app/about/page.tsx
+  s_f2da16c07146a0::t_17116f1748481f 3-99
+src/app/dashboard/DashboardAccess.tsx
+  s_f2da16c07146a0::t_e55d0caa087291 10-29,66
+  s_f2da16c07146a0::t_6efdadb9404b33 9
+src/app/dashboard/DashboardClient.tsx
+  s_f2da16c07146a0::t_d8742c55bebcc7 201,214,220,338,354-355,357
+  s_f2da16c07146a0::t_14802d49eb3bf9 31-42,106-115,123-124,160,173,364,369-388,415-435,475-491
+tests/responsive-ui.test.mjs
+  s_f2da16c07146a0::t_8bf0732f91fca3 26-44
+  s_f2da16c07146a0::t_eb89258fd7eb8e 19,21-25,45-64
+src/lib/dashboard-content.ts
+  s_f2da16c07146a0::t_6599d0f4d718a0 4-12
+src/app/group-orders/page.tsx
+  s_f2da16c07146a0::t_f0576cb5ce22ae 2-152
+src/app/menu/page.tsx
+  s_f2da16c07146a0::t_eaa20b94ed8293 2-58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "bb6cee21636358fbd65a3a8c801049fd8655825f",
+  "prompts": {},
+  "sessions": {
+    "s_f2da16c07146a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5a0e-07a1-7b81-94d5-390a085229bc",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Pranav Kannepalli <pranav.kannepalli@gmail.com>"
+    }
+  }
+}
