@@ -6,6 +6,7 @@ import { FaPlus, FaTriangleExclamation, FaTrash } from "react-icons/fa6";
 import { collection, deleteDoc, doc, onSnapshot, setDoc } from "firebase/firestore";
 import type { DashboardImageOption, DashboardImageSlot, DashboardMenuItem } from "@/lib/dashboard-content";
 import { db, firebaseReady } from "@/lib/firebase-client";
+import { prepareMenuItemsForSave } from "@/lib/menu-save-preparation.mjs";
 
 const baseCategories = ["Fish & Seafood", "Vegetarian Comforts", "Bengali Classics"];
 
@@ -222,14 +223,20 @@ export default function DashboardClient({
   };
 
   const saveMenu = () => {
-    const preparedItems = menuItems.map((item) => ({
-      ...item,
-      id: item.id.startsWith("new-") ? `${slugify(item.category)}-${slugify(item.name || crypto.randomUUID())}` : item.id,
-      name: item.name.trim(),
-      price: item.price.trim(),
-      description: item.description.trim(),
-      imageSrc: item.imageSrc.trim(),
-    }));
+    let preparedEntries;
+
+    try {
+      preparedEntries = prepareMenuItemsForSave(
+        menuItems,
+        itemUploads,
+        (item: DashboardMenuItem) => `${slugify(item.category)}-${slugify(item.name || crypto.randomUUID())}`,
+      );
+    } catch (error) {
+      setMenuStatus(error instanceof Error ? error.message : "Could not prepare menu photos.");
+      return;
+    }
+
+    const preparedItems = preparedEntries.map(({ item }) => item);
 
     const invalidItem = preparedItems.find((item) => !item.name || !item.price || !item.description || !item.category || !item.imageSrc);
     if (invalidItem) {
@@ -251,10 +258,9 @@ export default function DashboardClient({
 
       const finalItems: DashboardMenuItem[] = [];
 
-      for (const item of preparedItems) {
-        const file = itemUploads[item.id];
-        if (file) {
-          finalItems.push({ ...item, imageSrc: await fileToDataUrl(file) });
+      for (const { item, upload } of preparedEntries) {
+        if (upload) {
+          finalItems.push({ ...item, imageSrc: await fileToDataUrl(upload) });
         } else {
           finalItems.push(item);
         }

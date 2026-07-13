@@ -30,7 +30,7 @@ export default function Footer() {
             {settings?.businessName ?? "The Bengali Food"}
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">
-            {settings?.footerDescription ?? "Bengali fish curries, rice, lentils, vegetables, and sweets for pickup, delivery, and shared tables."}
+            Bengali fish curries, rice, lentils, vegetables, and sweets for pickup, delivery, and shared tables.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <OrderOnlineButton
@@ -41,7 +41,7 @@ export default function Footer() {
         </Reveal>
 
         <Reveal variant="float">
-          <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-accent">Quick Links</h2>
+          <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-primary">Quick Links</h2>
           <nav className="mt-4 grid gap-3" aria-label="Footer navigation">
             {links.map((link) => (
               <Link key={link.href} href={link.href} className="text-sm text-muted-foreground hover:text-secondary">
@@ -52,7 +52,7 @@ export default function Footer() {
         </Reveal>
 
         <Reveal variant="float">
-          <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-accent">Contact</h2>
+          <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-primary">Contact</h2>
           <div className="mt-4 grid gap-3 text-sm text-muted-foreground">
             <p className="flex gap-3">
               <FaLocationDot className="mt-1 shrink-0 text-primary" aria-hidden />

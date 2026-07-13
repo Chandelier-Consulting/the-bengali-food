@@ -4,13 +4,9 @@ import { getFirestore } from "firebase-admin/firestore";
 const hero = "/images/bengali/bengali-feast-hero.png";
 const fish = "/images/bengali/rohu-kalia.png";
 const settings = {
-  businessName: "The Bengali Food", locationLabel: "San Jose, CA", orderUrl: "https://order.online/store/the-bengali-food-32130435?pickup=true", ratingText: "4.3 rating from 20+ DoorDash customers",
-  footerDescription: "Bengali fish curries, lentils, vegetables, and home-style comfort food for pickup, delivery, and gatherings.",
-  home: { eyebrow: "Authentic Bengali cuisine · San Jose, CA", title: "Bengal, cooked close to home.", description: "Mustard-rich fish curries, comforting lentils, and Bengali classics made for weeknight comfort and special gatherings.", featuredEyebrow: "Start here", featuredTitle: "From mustard fish to generous prawn curry.", featuredDescription: "Bengali cooking brings freshwater fish, mustard, vegetables, and slow-building spice together in unmistakably comforting ways.", gatheringEyebrow: "For shared tables", gatheringTitle: "Bring Bengali comfort food to the gathering.", gatheringDescription: "Planning dinner for a group or an event? Start with the online menu and choose the dishes that make the table feel complete." },
-  about: { eyebrow: "Our table", title: "Bengali food has a language of its own.", description: "Mustard, fish, lentils, seasonal vegetables, and carefully built spice are at the center of Bengali cooking. The Bengali Food brings those familiar flavors to the South Bay." },
-  order: { eyebrow: "Pickup and delivery", title: "Order The Bengali Food in San Jose.", description: "Use the restaurant’s live menu to choose pickup or delivery, check current availability, and complete your order." },
-  catering: { eyebrow: "Events and gatherings", title: "Bengali food for a table worth gathering around.", description: "The Bengali Food offers event catering for small gatherings and large celebrations. Use the live ordering menu to start a group order." },
-  orderLinks: [{ label: "Order pickup or delivery", href: "https://order.online/store/the-bengali-food-32130435?pickup=true" }],
+  businessName: "The Bengali Food",
+  locationLabel: "San Jose, CA",
+  orderUrl: "https://order.online/store/the-bengali-food-32130435?pickup=true",
   images: { Hero: hero, "Fish & Seafood": fish, "Vegetarian Comforts": hero, "Bengali Classics": fish, Desserts: hero },
 };
 const categories = [

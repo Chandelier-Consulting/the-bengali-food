@@ -22,7 +22,7 @@ export default function MenuPage() {
             Bengali dishes, ready when you are.
           </h1>
           <p className="body-copy mt-5 max-w-2xl">
-            Every menu item below can carry its own managed photo, description, price, and visibility from the dashboard.
+            Explore Bengali favorites, check today&apos;s availability, then choose pickup or delivery on the live ordering menu.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-primary px-7 font-black text-primary-foreground hover:bg-primary/90" label="Open live ordering menu" />
@@ -49,7 +49,7 @@ export default function MenuPage() {
             <p className="text-xs font-black uppercase tracking-[.2em] text-primary-foreground/72">Checkout</p>
             <h2 className="mt-3 text-4xl font-black">Use the live menu before placing the order.</h2>
             <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-primary-foreground/80">
-              Dashboard menu items power this page. The ordering provider remains the source for final availability and checkout.
+              Review dishes and current availability before choosing pickup or delivery.
             </p>
           </div>
           <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-foreground px-7 font-black text-background hover:bg-foreground/90" label="Order now" />
