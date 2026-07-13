@@ -43,16 +43,16 @@ export default function MenuPage() {
 
       <ManagedMenuSections />
 
-      <section className="px-5 pb-20">
-        <Reveal className="mx-auto grid max-w-6xl gap-6 rounded-3xl border border-border bg-surface p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8" variant="float">
+      <section className="bg-primary px-5 py-16 text-primary-foreground">
+        <Reveal className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <p className="text-xs font-black uppercase tracking-[.2em] text-accent">Checkout</p>
-            <h2 className="mt-3 text-4xl font-black text-secondary">Use the live menu before placing the order.</h2>
-            <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-muted">
+            <p className="text-xs font-black uppercase tracking-[.2em] text-primary-foreground/72">Checkout</p>
+            <h2 className="mt-3 text-4xl font-black">Use the live menu before placing the order.</h2>
+            <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-primary-foreground/80">
               Dashboard menu items power this page. The ordering provider remains the source for final availability and checkout.
             </p>
           </div>
-          <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-primary px-7 font-black text-primary-foreground hover:bg-primary/90" label="Order now" />
+          <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-foreground px-7 font-black text-background hover:bg-foreground/90" label="Order now" />
         </Reveal>
       </section>
     </>

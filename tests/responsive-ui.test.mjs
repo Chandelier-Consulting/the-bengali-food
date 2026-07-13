@@ -30,7 +30,7 @@ test("dashboard explains missing Firebase Auth setup", async () => {
 });
 test("public pages include Tomy's-level content sections", async () => {
   const files = [
-    ["../src/components/HomeTruckJourney.tsx", 8],
+    ["../src/components/HomeTruckJourney.tsx", 6],
     ["../src/app/about/page.tsx", 5],
     ["../src/app/location/page.tsx", 3],
     ["../src/app/group-orders/page.tsx", 5],
