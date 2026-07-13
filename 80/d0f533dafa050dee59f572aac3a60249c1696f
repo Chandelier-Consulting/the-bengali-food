@@ -1,0 +1,22 @@
+src/app/dashboard/DashboardClient.tsx
+  s_f2da16c07146a0::t_206b9683b08990 214,364,366,417,472,475,594
+.superpowers/sdd/task-6-report.md
+  s_f2da16c07146a0::t_5f92bb60c3f296 38-43
+  s_f2da16c07146a0::t_206b9683b08990 30-37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "80d0f533dafa050dee59f572aac3a60249c1696f",
+  "prompts": {},
+  "sessions": {
+    "s_f2da16c07146a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5a0e-07a1-7b81-94d5-390a085229bc",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Pranav Kannepalli <pranav.kannepalli@gmail.com>"
+    }
+  }
+}
