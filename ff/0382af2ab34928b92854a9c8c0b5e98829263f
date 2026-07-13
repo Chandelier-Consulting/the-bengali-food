@@ -1,0 +1,27 @@
+src/components/MobileActionBar.tsx
+  s_f2da16c07146a0::t_a0b17e6955ea95 18-19,22
+src/components/Navbar.tsx
+  s_f2da16c07146a0::t_a0b17e6955ea95 38,43-44,46,57,63,74,85-86,101,111-112,119
+src/components/Footer.tsx
+  s_f2da16c07146a0::t_a0b17e6955ea95 26,30,32-33,37,47,56,59,64-65
+src/app/layout.tsx
+  s_f2da16c07146a0::t_a0b17e6955ea95 51,76
+src/app/globals.css
+  s_f2da16c07146a0::t_a0b17e6955ea95 8-44,128-176
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "ff0382af2ab34928b92854a9c8c0b5e98829263f",
+  "prompts": {},
+  "sessions": {
+    "s_f2da16c07146a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5a0e-07a1-7b81-94d5-390a085229bc",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Pranav Kannepalli <pranav.kannepalli@gmail.com>"
+    }
+  }
+}
