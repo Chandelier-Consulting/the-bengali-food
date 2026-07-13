@@ -304,7 +304,7 @@ export default function DashboardClient({
             Update the menu, swap any website photo, and set each menu item image in one place.
           </p>
         </div>
-        <div className={`rounded-2xl border px-5 py-4 text-sm font-bold ${managerConnected ? "border-accent/30 bg-accent/10 text-accent" : "border-primary/30 bg-primary/12 text-primary"}`}>
+        <div className={`rounded-lg border px-4 py-3 text-sm font-bold ${managerConnected ? "border-accent/30 bg-accent/10 text-accent" : "border-primary/30 bg-primary/12 text-primary"}`}>
           {managerConnected ? "Connected and ready to save" : "Firebase is not ready yet"}
         </div>
       </div>
@@ -313,14 +313,14 @@ export default function DashboardClient({
         <button
           type="button"
           onClick={onSignOut}
-          className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 px-5 text-sm font-black text-white transition hover:border-primary/40"
+          className="inline-flex min-h-10 items-center justify-center rounded-lg border border-white/10 px-4 text-sm font-black text-white transition hover:border-primary/40"
         >
           Sign out
         </button>
       </div>
 
       {!managerConnected ? (
-        <div className="mt-6 rounded-3xl border border-primary/30 bg-primary/12 p-5 text-sm font-bold leading-6 text-primary">
+        <div className="mt-6 rounded-lg border border-primary/30 bg-primary/12 p-4 text-sm font-bold leading-6 text-primary">
           <div className="flex items-start gap-3">
             <FaTriangleExclamation className="mt-0.5 shrink-0" aria-hidden />
             <p>Check the Firebase web config or network connection, then try saving again.</p>
@@ -333,7 +333,7 @@ export default function DashboardClient({
           type="button"
           disabled={!managerConnected || savingSections}
           onClick={saveSectionPhotos}
-          className="inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-6 text-sm font-black text-white transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex min-h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-black text-white transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
         >
           {savingSections ? "Saving..." : "Save photos"}
         </button>
@@ -341,15 +341,18 @@ export default function DashboardClient({
           type="button"
           disabled={!managerConnected || savingMenu}
           onClick={saveMenu}
-          className="inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-6 text-sm font-black text-white transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex min-h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-black text-white transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
         >
           {savingMenu ? "Saving..." : "Save menu changes"}
         </button>
         {sectionStatus ? <p className="self-center text-sm font-bold text-accent">{sectionStatus}</p> : null}
         {menuStatus ? <p className="self-center text-sm font-bold text-accent">{menuStatus}</p> : null}
+        <p className="text-xs font-semibold leading-5 text-white/54">
+          Each menu item needs its own photo before it can be saved.
+        </p>
       </div>
 
-      <section className="mt-8 rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-[0_22px_70px_rgba(0,0,0,.22)]">
+      <section className="mt-8 rounded-lg border border-white/10 bg-white/[0.06] p-4">
         <div className="flex flex-col gap-2">
           <p className="text-xs font-black uppercase tracking-[0.18em] text-accent">Photos</p>
           <h2 className="text-3xl font-black">Website and menu photos</h2>
@@ -360,8 +363,8 @@ export default function DashboardClient({
 
         <div className="mt-6 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
           {globalSlots.map((slot) => (
-            <article key={slot.key} className="rounded-2xl border border-white/10 bg-black/18 p-4">
-              <PhotoPreview src={imageSelections[slot.key] ?? slot.defaultSrc} alt={slot.label} className="h-44 w-full rounded-2xl object-cover" />
+            <article key={slot.key} className="rounded-lg border border-white/10 bg-black/18 p-4">
+              <PhotoPreview src={imageSelections[slot.key] ?? slot.defaultSrc} alt={slot.label} className="aspect-[4/3] w-full rounded-lg object-cover" />
               <div className="mt-4">
                 <p className="text-sm font-black text-white">{slot.label}</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/46">{slot.key}</p>
@@ -376,7 +379,7 @@ export default function DashboardClient({
                       setImageSelections((current) => ({ ...current, [slot.key]: event.target.value }));
                       setSectionStatus("");
                     }}
-                    className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                    className="min-h-10 rounded-lg border border-white/10 bg-[#11100f] px-3 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
                   >
                     {imageChoices.map((image) => (
                       <option key={image.src} value={image.src}>
@@ -407,12 +410,12 @@ export default function DashboardClient({
         </div>
       </section>
 
-      <section className="mt-8 grid gap-6">
+      <section className="mt-8 grid gap-4">
         {groupedMenu.map(({ slot, items }) => (
-          <article key={slot.key} className="rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-[0_22px_70px_rgba(0,0,0,.22)]">
-            <div className="flex flex-col gap-5 xl:grid xl:grid-cols-[280px_1fr] xl:items-start">
-              <div className="rounded-2xl border border-white/10 bg-black/18 p-4">
-                <PhotoPreview src={imageSelections[slot.key] ?? slot.defaultSrc} alt={slot.label} className="h-44 w-full rounded-2xl object-cover" />
+          <article key={slot.key} className="rounded-lg border border-white/10 bg-white/[0.06] p-4">
+            <div className="flex flex-col gap-4 xl:grid xl:grid-cols-[280px_1fr] xl:items-start">
+              <div className="rounded-lg border border-white/10 bg-black/18 p-4">
+                <PhotoPreview src={imageSelections[slot.key] ?? slot.defaultSrc} alt={slot.label} className="aspect-[4/3] w-full rounded-lg object-cover" />
                 {imageChoices.length ? (
                   <label className="mt-4 grid gap-2 text-sm font-black">
                     Section photo
@@ -423,7 +426,7 @@ export default function DashboardClient({
                         setImageSelections((current) => ({ ...current, [slot.key]: event.target.value }));
                         setSectionStatus("");
                       }}
-                      className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                      className="min-h-10 rounded-lg border border-white/10 bg-[#11100f] px-3 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
                     >
                       {imageChoices.map((image) => (
                         <option key={image.src} value={image.src}>
@@ -460,26 +463,26 @@ export default function DashboardClient({
                   <button
                     type="button"
                     onClick={() => addMenuItem(slot.key, imageSelections[slot.key] ?? slot.defaultSrc)}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/10 px-5 text-sm font-black text-white transition hover:border-primary/40"
+                    className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-white/10 px-4 text-sm font-black text-white transition hover:border-primary/40"
                   >
                     <FaPlus aria-hidden /> Add item to {slot.key}
                   </button>
                 </div>
 
-                <div className="mt-6 grid gap-4">
-                  {items.length ? (
-                    items.map((item) => (
-                      <article key={item.id} className="rounded-2xl border border-white/10 bg-black/18 p-4">
+                  <div className="mt-4 grid gap-4">
+                    {items.length ? (
+                      items.map((item) => (
+                      <article key={item.id} className="rounded-lg border border-white/10 bg-black/18 p-4">
                         <div className="grid gap-4 xl:grid-cols-[180px_1fr_auto]">
                           <div>
-                            <PhotoPreview src={item.imageSrc} alt={item.name || "Menu item"} className="h-32 w-full rounded-2xl object-cover" />
+                            <PhotoPreview src={item.imageSrc} alt={item.name || "Menu item"} className="aspect-[4/3] w-full rounded-lg object-cover" />
                             {imageChoices.length ? (
                               <label className="mt-3 grid gap-2 text-sm font-black">
                                 Item photo
                                 <select
                                   value={item.imageSrc}
                                   onChange={(event) => updateMenuItem(item.id, "imageSrc", event.target.value)}
-                                  className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                                  className="min-h-10 rounded-lg border border-white/10 bg-[#11100f] px-3 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
                                 >
                                   {imageChoices.map((image) => (
                                     <option key={image.src} value={image.src}>
@@ -514,7 +517,7 @@ export default function DashboardClient({
                                 <input
                                   value={item.name}
                                   onChange={(event) => updateMenuItem(item.id, "name", event.target.value)}
-                                  className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                                  className="min-h-10 rounded-lg border border-white/10 bg-[#11100f] px-3 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
                                 />
                               </label>
                               <label className="grid gap-2 text-sm font-black">
@@ -522,7 +525,7 @@ export default function DashboardClient({
                                 <input
                                   value={item.price}
                                   onChange={(event) => updateMenuItem(item.id, "price", event.target.value)}
-                                  className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                                  className="min-h-10 rounded-lg border border-white/10 bg-[#11100f] px-3 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
                                 />
                               </label>
                             </div>
@@ -533,7 +536,7 @@ export default function DashboardClient({
                                 <select
                                   value={item.category}
                                   onChange={(event) => updateMenuItem(item.id, "category", event.target.value)}
-                                  className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                                  className="min-h-10 rounded-lg border border-white/10 bg-[#11100f] px-3 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
                                 >
                                   {categories.map((category) => (
                                     <option key={category} value={category}>
@@ -549,7 +552,7 @@ export default function DashboardClient({
                                   min={0}
                                   value={item.sortOrder}
                                   onChange={(event) => updateMenuItem(item.id, "sortOrder", Number(event.target.value))}
-                                  className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                                  className="min-h-10 rounded-lg border border-white/10 bg-[#11100f] px-3 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
                                 />
                               </label>
                             </div>
@@ -560,13 +563,13 @@ export default function DashboardClient({
                                 value={item.description}
                                 onChange={(event) => updateMenuItem(item.id, "description", event.target.value)}
                                 rows={3}
-                                className="rounded-2xl border border-white/10 bg-[#11100f] px-4 py-3 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                                className="rounded-lg border border-white/10 bg-[#11100f] px-3 py-2 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
                               />
                             </label>
                           </div>
 
                           <div className="flex gap-2 xl:flex-col xl:justify-between">
-                            <label className="flex min-h-11 items-center gap-2 rounded-2xl border border-white/10 px-4 text-sm font-black text-white/72">
+                            <label className="flex min-h-10 items-center gap-2 rounded-lg border border-white/10 px-3 text-sm font-black text-white/72">
                               <input
                                 type="checkbox"
                                 checked={item.visible}
@@ -578,7 +581,7 @@ export default function DashboardClient({
                             <button
                               type="button"
                               onClick={() => removeMenuItem(item.id)}
-                              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-white/10 px-4 text-sm font-black text-white/72 transition hover:border-primary/40 hover:text-white"
+                              className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-white/10 px-3 text-sm font-black text-white/72 transition hover:border-primary/40 hover:text-white"
                               aria-label={`Remove ${item.name || "menu item"}`}
                             >
                               <FaTrash aria-hidden /> Remove
@@ -588,7 +591,7 @@ export default function DashboardClient({
                       </article>
                     ))
                   ) : (
-                    <div className="rounded-2xl border border-dashed border-white/10 bg-black/18 p-6 text-sm font-semibold text-white/58">
+                    <div className="rounded-lg border border-dashed border-white/10 bg-black/18 p-4 text-sm font-semibold text-white/58">
                       No items in this section yet. Use <span className="font-black text-white">Add item to {slot.key}</span> to put one on the menu.
                     </div>
                   )}
