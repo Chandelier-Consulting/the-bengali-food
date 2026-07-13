@@ -1,0 +1,37 @@
+src/app/layout.tsx
+  s_f2da16c07146a0::t_dd5dc8089a916e 2,10-14,16,18-19,80
+src/components/HomeTruckJourney.tsx
+  s_f2da16c07146a0::t_c2815dc961e69e 47,67,133
+src/app/globals.css
+  s_f2da16c07146a0::t_a753fb85fd5577 58,93,129-132,137,151,177-178,182-191
+  s_f2da16c07146a0::t_4cd981dd3371d1 192
+src/app/menu/page.tsx
+  s_f2da16c07146a0::t_2ba1871b042d81 35,47
+src/app/about/page.tsx
+  s_f2da16c07146a0::t_f72ef65f98c401 26,29,89
+tests/responsive-ui.test.mjs
+  s_f2da16c07146a0::t_9218abef020642 115
+  s_f2da16c07146a0::t_c7081b5da58f5d 108-114,116-119
+src/app/group-orders/page.tsx
+  s_f2da16c07146a0::t_4a36453ab2c24c 71,111
+src/app/location/page.tsx
+  s_f2da16c07146a0::t_49b1f6cb021b10 40
+src/components/Footer.tsx
+  s_f2da16c07146a0::t_296b941b271fe0 27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "42745ce944c55e5f368654707766ae54bf76edcc",
+  "prompts": {},
+  "sessions": {
+    "s_f2da16c07146a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5a0e-07a1-7b81-94d5-390a085229bc",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Pranav Kannepalli <pranav.kannepalli@gmail.com>"
+    }
+  }
+}
