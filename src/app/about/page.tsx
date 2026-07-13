@@ -1,6 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
+import Link from "next/link";
 import OrderOnlineButton from "@/components/OrderOnlineButton";
 import Reveal from "@/components/Reveal";
 import { useSiteContent } from "@/components/SiteContentProvider";
@@ -69,6 +70,9 @@ export default function AboutPage() {
             <p className="lead-copy mt-6 max-w-xl">
               The strongest dishes are not meant to stand alone. Mustard, river fish, rice, dal, vegetables, and sweets each do a specific job.
             </p>
+            <Link href="/menu" className="mt-8 inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-7 font-bold text-primary-foreground transition-colors hover:bg-primary-hover">
+              View the menu
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -112,6 +116,11 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
+          <Reveal className="lg:col-start-2">
+            <Link href="/menu" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-7 font-bold text-primary-foreground transition-colors hover:bg-primary-hover">
+              Explore the menu
+            </Link>
+          </Reveal>
         </div>
       </section>
 
@@ -128,6 +137,9 @@ export default function AboutPage() {
                 <p className="mt-3 text-sm font-medium leading-6 text-white/78">{body}</p>
               </article>
             ))}
+          </div>
+          <div className="mt-10">
+            <OrderOnlineButton className="min-h-12 bg-primary px-7 font-bold text-primary-foreground hover:bg-primary-hover" label="Order pickup or delivery" />
           </div>
         </Reveal>
       </section>
@@ -149,6 +161,9 @@ export default function AboutPage() {
                 </span>
               ))}
             </div>
+            <Link href="/menu" className="inline-flex min-h-12 w-fit items-center justify-center rounded-lg border border-border px-7 font-bold text-secondary transition-colors hover:bg-surface">
+              See full menu
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -178,6 +193,12 @@ export default function AboutPage() {
               </Reveal>
             ))}
           </div>
+          <Reveal className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <Link href="/menu" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border px-7 font-bold text-secondary transition-colors hover:bg-background">
+              See full menu
+            </Link>
+            <OrderOnlineButton className="min-h-12 bg-primary px-7 font-bold text-primary-foreground hover:bg-primary-hover" label="Order online" />
+          </Reveal>
         </div>
       </section>
 

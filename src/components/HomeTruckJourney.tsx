@@ -99,6 +99,11 @@ export default function HomeTruckJourney() {
               </Reveal>
             ))}
           </div>
+          <Reveal className="mt-10">
+            <Link href="/menu" className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg border border-border px-7 font-bold text-secondary transition-colors hover:bg-surface">
+              See the full menu <ArrowRight aria-hidden className="size-4" />
+            </Link>
+          </Reveal>
         </div>
       </section>
 
@@ -125,6 +130,9 @@ export default function HomeTruckJourney() {
                 </article>
               ))}
             </div>
+            <Link href="/menu" className="mt-8 inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-primary px-7 font-bold text-primary-foreground transition-colors hover:bg-primary-hover">
+              Build your meal from the menu <ArrowRight aria-hidden className="size-4" />
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -162,6 +170,12 @@ export default function HomeTruckJourney() {
               </li>
             ))}
           </ol>
+          <Reveal className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <OrderOnlineButton className="min-h-12 bg-primary px-7 font-bold text-primary-foreground hover:bg-primary-hover" label="Order online" />
+            <Link href="/menu" className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg border border-border px-7 font-bold text-secondary transition-colors hover:bg-surface">
+              Review the menu first <ArrowRight aria-hidden className="size-4" />
+            </Link>
+          </Reveal>
         </div>
       </section>
     </>

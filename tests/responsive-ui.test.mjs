@@ -139,6 +139,34 @@ test("about page uses shared typography scale and richer editorial content", asy
   assert.doesNotMatch(about, /text-5xl font-extrabold|text-4xl font-extrabold/g);
 });
 
+test("home and about pages place contextual menu and order CTAs after conversion moments", async () => {
+  const home = await read("../src/components/HomeTruckJourney.tsx");
+  const about = await read("../src/app/about/page.tsx");
+
+  for (const marker of [
+    "See the full menu",
+    "Build your meal from the menu",
+    "Order online",
+  ]) {
+    assert.ok(home.includes(marker), `homepage is missing contextual CTA: ${marker}`);
+  }
+
+  for (const marker of [
+    "View the menu",
+    "Explore the menu",
+    "Order pickup or delivery",
+    "See full menu",
+    "Order online",
+  ]) {
+    assert.ok(about.includes(marker), `about page is missing contextual CTA: ${marker}`);
+  }
+
+  assert.match(home, /href="\/menu"/);
+  assert.match(about, /href="\/menu"/);
+  assert.match(home, /OrderOnlineButton/);
+  assert.match(about, /OrderOnlineButton/);
+});
+
 test("root layout is not forced into global dark mode", async () => {
   const layout = await read("../src/app/layout.tsx");
   assert.doesNotMatch(layout, /className=\{cn\("dark"/);
