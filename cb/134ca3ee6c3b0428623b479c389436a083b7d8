@@ -1,0 +1,36 @@
+src/lib/menu-save-preparation.mjs
+  s_f2da16c07146a0::t_fd022a6c9c4daa 1-31
+src/components/Footer.tsx
+  s_f2da16c07146a0::t_16243924f03434 33,44,55
+.superpowers/sdd/task-7-report.md
+  s_f2da16c07146a0::t_18c47845b7d3ce 14,36-51
+tests/menu-save-preparation.test.mjs
+  s_f2da16c07146a0::t_ec5c5c2f00befe 1-6,8-57
+  s_f2da16c07146a0::t_fd022a6c9c4daa 7
+src/lib/site-content.ts
+  s_f2da16c07146a0::t_16243924f03434 2-4
+scripts/seed-firestore.mjs
+  s_f2da16c07146a0::t_16243924f03434 7-9
+src/app/menu/page.tsx
+  s_f2da16c07146a0::t_16243924f03434 25,52
+src/app/dashboard/DashboardClient.tsx
+  s_f2da16c07146a0::t_16243924f03434 226-231,233-239,261-263
+  s_f2da16c07146a0::t_fd022a6c9c4daa 9
+  s_f2da16c07146a0::t_1ec7f045a16bf1 232
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "cb134ca3ee6c3b0428623b479c389436a083b7d8",
+  "prompts": {},
+  "sessions": {
+    "s_f2da16c07146a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5a0e-07a1-7b81-94d5-390a085229bc",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Pranav Kannepalli <pranav.kannepalli@gmail.com>"
+    }
+  }
+}
