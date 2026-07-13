@@ -37,7 +37,7 @@ export default function LocationPage() {
       </section>
 
       <section className="border-y border-border bg-surface px-5 py-16">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-[88rem]">
           <Reveal className="max-w-2xl">
             <p className="eyebrow">Practical details</p>
             <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Everything you need before ordering.</h2>

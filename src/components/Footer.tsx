@@ -24,7 +24,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-border bg-surface text-secondary">
-      <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1.2fr] lg:px-8">
+      <div className="mx-auto grid max-w-[88rem] gap-8 px-5 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1.2fr] lg:px-8">
         <Reveal>
           <Link href="/" className="text-2xl font-extrabold text-primary">
             {settings?.businessName ?? "The Bengali Food"}

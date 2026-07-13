@@ -44,7 +44,7 @@ export default function HomeTruckJourney() {
       <section className="relative isolate min-h-dvh overflow-hidden bg-kitchen-night bg-[var(--kitchen-night)] px-5 pb-20 pt-28 text-white">
         <img src={heroImage} alt="Bengali food" className="absolute inset-0 -z-20 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(27,19,15,.88),rgba(27,19,15,.44))]" />
-        <Reveal className="mx-auto flex min-h-[calc(100dvh-9rem)] max-w-6xl items-end pb-6 lg:items-center lg:pb-0">
+        <Reveal className="mx-auto flex min-h-[calc(100dvh-9rem)] max-w-[88rem] items-end pb-6 lg:items-center lg:pb-0">
           <div className="max-w-4xl">
             <p className="eyebrow text-[#f4d28a]">Authentic Bengali cuisine · San Jose</p>
             <h1 className="mt-5 max-w-4xl text-5xl font-extrabold leading-[0.96] tracking-tight sm:text-7xl">
@@ -64,7 +64,7 @@ export default function HomeTruckJourney() {
       </section>
 
       <section className="border-y border-border bg-surface px-5 py-5">
-        <div className="mx-auto grid max-w-6xl divide-y divide-border sm:grid-cols-3 sm:divide-y-0">
+        <div className="mx-auto grid max-w-[88rem] divide-y divide-border sm:grid-cols-3 sm:divide-y-0">
           {proof.map(([value, label]) => (
             <div key={label} className="py-4 sm:border-r sm:border-border sm:px-5 sm:first:pl-0 sm:last:border-r-0">
               <p className="text-lg font-extrabold text-secondary">{value}</p>
@@ -130,7 +130,7 @@ export default function HomeTruckJourney() {
       <section className="relative isolate overflow-hidden px-5 py-28 text-white">
         <img src={dessertImage} alt="Bengali desserts and dishes" className="absolute inset-0 -z-20 h-full w-full object-cover" loading="lazy" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(27,19,15,.9),rgba(27,19,15,.5))]" />
-        <Reveal className="mx-auto max-w-6xl">
+        <Reveal className="mx-auto max-w-[88rem]">
           <p className="eyebrow text-[#f4d28a]">For shared meals</p>
           <h2 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">Order enough curry, rice, and sweets for everyone.</h2>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">

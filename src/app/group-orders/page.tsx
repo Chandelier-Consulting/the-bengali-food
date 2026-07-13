@@ -68,7 +68,7 @@ export default function GroupOrdersPage() {
       </section>
 
       <section className="bg-secondary px-5 py-20 text-secondary-foreground">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-[88rem]">
           <Reveal className="max-w-2xl">
             <p className="text-xs font-extrabold uppercase tracking-[.14em] text-[#f4d28a]">Plan the order</p>
             <h2 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">A few details make group ordering easy.</h2>
@@ -108,7 +108,7 @@ export default function GroupOrdersPage() {
       </section>
 
       <section className="bg-primary px-5 py-16 text-primary-foreground">
-        <Reveal className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
+        <Reveal className="mx-auto grid max-w-[88rem] gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[.14em] text-primary-foreground/72">Ready to plan the table?</p>
             <h2 className="mt-4 text-4xl font-extrabold leading-tight">Choose the curries, then add rice, dal, and sweets.</h2>

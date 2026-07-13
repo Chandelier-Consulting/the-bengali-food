@@ -23,10 +23,10 @@ export default function AboutPage() {
 
   return (
     <>
-      <section className="relative isolate min-h-[34rem] overflow-hidden px-5 py-28 text-white sm:py-36">
+      <section className="relative isolate flex min-h-[78svh] items-center overflow-hidden px-5 py-28 text-white sm:py-36">
         <img src={heroImage} alt="Bengali food" className="absolute inset-0 -z-20 h-full w-full object-cover" />
         <div className="absolute inset-0 -z-10 bg-[rgba(27,19,15,.74)]" />
-        <Reveal className="mx-auto flex min-h-[20rem] max-w-6xl items-end">
+        <Reveal className="mx-auto flex w-full max-w-[88rem] items-end">
           <div className="max-w-3xl">
             <p className="eyebrow text-[#f4d28a]">Our table</p>
             <h1 className="mt-5 text-5xl font-extrabold leading-[0.98] sm:text-7xl">Bengali food has a language of its own.</h1>
@@ -86,7 +86,7 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-primary px-5 py-16 text-primary-foreground">
-        <Reveal className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
+        <Reveal className="mx-auto grid max-w-[88rem] gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[.14em] text-primary-foreground/72">Ready to eat</p>
             <h2 className="mt-4 text-4xl font-extrabold leading-tight">Order fish curry, rice, dal, and sweets today.</h2>

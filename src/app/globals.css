@@ -55,7 +55,7 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --font-sans: var(--font-sans);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-heading);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -90,7 +90,7 @@
 }
 
 body {
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -126,12 +126,15 @@ html {
 }
 
 .section-shell {
-  padding: 6rem 1.25rem;
+  display: flex;
+  min-height: 78svh;
+  align-items: center;
+  padding: 7rem clamp(1.25rem, 4vw, 4rem);
 }
 
 .section-inner {
   margin-inline: auto;
-  max-width: 72rem;
+  width: min(100%, 88rem);
 }
 
 .eyebrow,
@@ -145,6 +148,7 @@ html {
 
 .display-heading {
   color: var(--secondary);
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
   font-weight: 800;
   line-height: 0.98;
 }
@@ -170,8 +174,20 @@ html {
 
 @media (min-width: 1024px) {
   .section-shell {
-    padding-block: 7rem;
+    min-height: 84svh;
+    padding-block: 8rem;
   }
+}
+
+@media (max-width: 767px) {
+  .section-shell {
+    min-height: auto;
+    padding-block: 5rem;
+  }
+}
+
+:where(h1, h2, h3) {
+  font-family: var(--font-heading), ui-serif, Georgia, serif;
 }
 
 @media (prefers-reduced-motion: reduce) {

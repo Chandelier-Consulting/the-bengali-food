@@ -105,6 +105,18 @@ test("design tokens use warm restaurant palette instead of monochrome dark theme
   assert.match(css, /\.eyebrow/);
 });
 
+test("public layout uses premium editorial fonts and expansive section sizing", async () => {
+  const layout = await read("../src/app/layout.tsx");
+  const css = await read("../src/app/globals.css");
+
+  assert.match(layout, /Lora/);
+  assert.match(layout, /Source_Sans_3/);
+  assert.match(css, /--font-heading:\s*var\(--font-heading\)/);
+  assert.match(css, /width:\s*min\(100%,\s*88rem\)/);
+  assert.match(css, /min-height:\s*78svh/);
+  assert.match(css, /min-height:\s*84svh/);
+});
+
 test("root layout is not forced into global dark mode", async () => {
   const layout = await read("../src/app/layout.tsx");
   assert.doesNotMatch(layout, /className=\{cn\("dark"/);

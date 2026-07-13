@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Geist } from "next/font/google";
+import { Lora, Source_Sans_3 } from "next/font/google";
 import Footer from "@/components/Footer";
 import MobileActionBar from "@/components/MobileActionBar";
 import Navbar from "@/components/Navbar";
@@ -7,12 +7,16 @@ import { SiteContentProvider } from "@/components/SiteContentProvider";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-inter",
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading",
 });
 
 const businessName = "The Bengali Food";
@@ -73,7 +77,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("h-full", "scroll-smooth", inter.variable, "font-sans", geist.variable)}>
+    <html lang="en" className={cn("h-full", "scroll-smooth", sourceSans.variable, lora.variable, "font-sans")}>
       <body className="min-h-full bg-background font-sans text-foreground antialiased">
         <script
           type="application/ld+json"

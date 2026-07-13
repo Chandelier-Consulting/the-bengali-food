@@ -32,7 +32,7 @@ export default function MenuPage() {
       </section>
 
       <section className="sticky top-[72px] z-30 border-y border-border bg-background/95 px-5 py-3 backdrop-blur-xl">
-        <nav aria-label="Menu categories" className="mx-auto flex max-w-6xl gap-2 overflow-x-auto">
+        <nav aria-label="Menu categories" className="mx-auto flex max-w-[88rem] gap-2 overflow-x-auto">
           {categories.map((name) => (
             <a key={name} href={`#${name.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")}`} className="shrink-0 rounded-lg border border-border px-5 py-3 text-sm font-black">
               {name}
@@ -44,7 +44,7 @@ export default function MenuPage() {
       <ManagedMenuSections />
 
       <section className="bg-primary px-5 py-16 text-primary-foreground">
-        <Reveal className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
+        <Reveal className="mx-auto grid max-w-[88rem] gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <p className="text-xs font-black uppercase tracking-[.2em] text-primary-foreground/72">Checkout</p>
             <h2 className="mt-3 text-4xl font-black">Open ordering when you&apos;re ready to check out.</h2>
