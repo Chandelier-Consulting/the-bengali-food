@@ -30,7 +30,7 @@ export default function HomeTruckJourney() {
   const { settings, menuItems, ready } = useSiteContent();
 
   if (!ready || !settings) {
-    return <section className="min-h-screen bg-background px-5 pt-32 text-foreground">Loading The Bengali Food...</section>;
+    return null;
   }
 
   const picks = menuItems.slice(0, 4);
@@ -86,15 +86,17 @@ export default function HomeTruckJourney() {
             </p>
           </Reveal>
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {picks.map((item) => (
-              <article key={item.id} className="menu-card overflow-hidden">
-                <img src={item.imageSrc || heroImage} alt={item.name} className="h-56 w-full object-cover" loading="lazy" />
-                <div className="p-5">
-                  <h3 className="text-xl font-extrabold text-secondary">{item.name}</h3>
-                  <p className="mt-2 text-sm font-medium leading-6 text-muted-foreground">{item.description}</p>
-                  <p className="mt-4 font-extrabold text-primary">{item.price}</p>
-                </div>
-              </article>
+            {picks.map((item, index) => (
+              <Reveal key={item.id} variant="float" delay={index * 0.05}>
+                <article key={item.id} className="menu-card overflow-hidden">
+                  <img src={item.imageSrc || heroImage} alt={item.name} className="h-56 w-full object-cover" loading="lazy" />
+                  <div className="p-5">
+                    <h3 className="text-xl font-extrabold text-secondary">{item.name}</h3>
+                    <p className="mt-2 text-sm font-medium leading-6 text-muted-foreground">{item.description}</p>
+                    <p className="mt-4 font-extrabold text-primary">{item.price}</p>
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>

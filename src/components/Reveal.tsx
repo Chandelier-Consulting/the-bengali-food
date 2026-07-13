@@ -11,6 +11,9 @@ type RevealProps = {
   variant?: "rise" | "float";
 };
 
+const ENTER_THRESHOLD = 0.2;
+const EXIT_THRESHOLD = 0.08;
+
 export default function Reveal({ children, className = "", delay = 0, variant = "rise" }: RevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -24,16 +27,16 @@ export default function Reveal({ children, className = "", delay = 0, variant = 
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.intersectionRatio >= 0.4) {
+        if (entry.intersectionRatio >= ENTER_THRESHOLD) {
           setVisible(true);
           return;
         }
 
-        if (entry.intersectionRatio <= 0.1) {
+        if (entry.intersectionRatio <= EXIT_THRESHOLD) {
           setVisible(false);
         }
       },
-      { threshold: [0, 0.1, 0.4, 1] },
+      { threshold: [0, EXIT_THRESHOLD, ENTER_THRESHOLD, 1] },
     );
 
     observer.observe(ref.current);
@@ -42,6 +45,10 @@ export default function Reveal({ children, className = "", delay = 0, variant = 
 
   const hidden = variant === "float" ? { opacity: 0, y: 28, scale: 0.985 } : { opacity: 0, y: 22 };
   const shown = variant === "float" ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0 };
+
+  if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div

@@ -95,13 +95,15 @@ export default function GroupOrdersPage() {
             <p className="body-copy max-w-2xl">These dishes are useful starting points when you are ordering for more than one household.</p>
           </Reveal>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {featuredItems.map((item) => (
-              <article key={item.id} className="border-b border-border pb-5">
-                <img src={item.imageSrc || heroImage} alt={item.name} className="h-48 w-full object-cover" loading="lazy" />
-                <h3 className="mt-4 text-xl font-extrabold text-secondary">{item.name}</h3>
-                <p className="body-copy mt-2 text-sm">{item.description}</p>
-                <p className="mt-4 font-extrabold text-primary">{item.price}</p>
-              </article>
+            {featuredItems.map((item, index) => (
+              <Reveal key={item.id} variant="float" delay={index * 0.05}>
+                <article key={item.id} className="border-b border-border pb-5">
+                  <img src={item.imageSrc || heroImage} alt={item.name} className="h-48 w-full object-cover" loading="lazy" />
+                  <h3 className="mt-4 text-xl font-extrabold text-secondary">{item.name}</h3>
+                  <p className="body-copy mt-2 text-sm">{item.description}</p>
+                  <p className="mt-4 font-extrabold text-primary">{item.price}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>

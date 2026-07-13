@@ -29,7 +29,7 @@ export default function ManagedMenuSections() {
   const { settings, menuItems, ready } = useSiteContent();
 
   if (!ready || !settings) {
-    return <section className="px-5 py-20 text-muted">Loading menu...</section>;
+    return null;
   }
 
   const groups = Array.from(new Set(menuItems.map((item) => item.category))).map((name) => [
@@ -54,19 +54,21 @@ export default function ManagedMenuSections() {
                   <p className="text-sm font-semibold text-muted-foreground">{items.length} items</p>
                 </div>
                 <div className="grid gap-5 md:grid-cols-2">
-                  {items.map((item) => (
-                    <article key={item.id} className="menu-card grid gap-4 p-3 sm:grid-cols-[150px_1fr]">
-                      <MenuItemPhoto item={item} fallback={fallback} />
-                      <div className="flex min-w-0 flex-col justify-between p-1">
-                        <div>
-                          <div className="flex items-start justify-between gap-4">
-                            <h3 className="text-lg font-extrabold leading-tight text-secondary">{item.name}</h3>
-                            <p className="shrink-0 font-extrabold tabular-nums text-primary">{item.price}</p>
+                  {items.map((item, index) => (
+                    <Reveal key={item.id} variant="float" delay={index * 0.04}>
+                      <article key={item.id} className="menu-card grid gap-4 p-3 sm:grid-cols-[150px_1fr]">
+                        <MenuItemPhoto item={item} fallback={fallback} />
+                        <div className="flex min-w-0 flex-col justify-between p-1">
+                          <div>
+                            <div className="flex items-start justify-between gap-4">
+                              <h3 className="text-lg font-extrabold leading-tight text-secondary">{item.name}</h3>
+                              <p className="shrink-0 font-extrabold tabular-nums text-primary">{item.price}</p>
+                            </div>
+                            <p className="mt-2 text-sm font-medium leading-6 text-muted-foreground">{item.description}</p>
                           </div>
-                          <p className="mt-2 text-sm font-medium leading-6 text-muted-foreground">{item.description}</p>
                         </div>
-                      </div>
-                    </article>
+                      </article>
+                    </Reveal>
                   ))}
                 </div>
               </section>
