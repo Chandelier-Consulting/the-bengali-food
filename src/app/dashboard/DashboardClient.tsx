@@ -6,7 +6,6 @@ import { FaPlus, FaTriangleExclamation, FaTrash } from "react-icons/fa6";
 import { collection, deleteDoc, doc, onSnapshot, setDoc } from "firebase/firestore";
 import type { DashboardImageOption, DashboardImageSlot, DashboardMenuItem } from "@/lib/dashboard-content";
 import { db, firebaseReady } from "@/lib/firebase-client";
-import { resolveCateringMenuHeading } from "@/lib/section-content";
 
 const baseCategories = ["Fish & Seafood", "Vegetarian Comforts", "Bengali Classics"];
 
@@ -27,6 +26,18 @@ function buildNewMenuItem(items: DashboardMenuItem[], category: string, fallback
     sortOrder: count,
     imageSrc: fallbackImage,
   };
+}
+
+function PhotoPreview({ src, alt, className }: { src: string; alt: string; className: string }) {
+  if (!src) {
+    return (
+      <div className={`${className} grid place-items-center border border-dashed border-white/10 bg-black/24 text-center text-xs font-black uppercase tracking-[0.14em] text-white/46`}>
+        No photo yet
+      </div>
+    );
+  }
+
+  return <img src={src} alt={alt} className={className} />;
 }
 
 async function fileToDataUrl(file: File) {
@@ -63,20 +74,17 @@ async function fileToDataUrl(file: File) {
 
 export default function DashboardClient({
   availableImages,
-  initialCateringMenuHeading,
   initialImageSelections,
   initialMenuItems,
   imageSlots,
   onSignOut,
 }: {
   availableImages: DashboardImageOption[];
-  initialCateringMenuHeading: string;
   initialImageSelections: Record<string, string>;
   initialMenuItems: DashboardMenuItem[];
   imageSlots: DashboardImageSlot[];
   onSignOut: () => Promise<void>;
 }) {
-  const [cateringMenuHeading, setCateringMenuHeading] = useState(initialCateringMenuHeading);
   const [imageSelections, setImageSelections] = useState(initialImageSelections);
   const [menuItems, setMenuItems] = useState(initialMenuItems);
   const [remoteItemIds, setRemoteItemIds] = useState<string[]>([]);
@@ -86,8 +94,6 @@ export default function DashboardClient({
   const [menuDirty, setMenuDirty] = useState(false);
   const [sectionUploads, setSectionUploads] = useState<Record<string, File | null>>({});
   const [itemUploads, setItemUploads] = useState<Record<string, File | null>>({});
-  const [settingsJson, setSettingsJson] = useState("{}");
-  const [settingsStatus, setSettingsStatus] = useState("");
   const [savingSections, startSavingSections] = useTransition();
   const [savingMenu, startSavingMenu] = useTransition();
   const managerConnected = firebaseReady && Boolean(db);
@@ -97,6 +103,16 @@ export default function DashboardClient({
     return Array.from(new Set([...baseCategories, ...dynamic]));
   }, [menuItems]);
 
+  const imageChoices = useMemo(() => {
+    const choices = [
+      ...availableImages,
+      ...Object.entries(imageSelections)
+        .filter(([, src]) => Boolean(src))
+        .map(([label, src]) => ({ label, src })),
+    ];
+    return Array.from(new Map(choices.map((image) => [image.src, image])).values());
+  }, [availableImages, imageSelections]);
+
   const globalSlots = useMemo(() => {
     const categoryKeys = new Set(categories);
     return imageSlots.filter((slot) => !categoryKeys.has(slot.key));
@@ -104,8 +120,8 @@ export default function DashboardClient({
 
   const sectionSlots = useMemo(() => {
     const slotMap = new Map(imageSlots.map((slot) => [slot.key, slot]));
-    return categories.map((category) => slotMap.get(category) ?? { key: category, label: `${category} section`, defaultSrc: availableImages[0]?.src ?? "" });
-  }, [availableImages, categories, imageSlots]);
+    return categories.map((category) => slotMap.get(category) ?? { key: category, label: `${category} section`, defaultSrc: imageChoices[0]?.src ?? "" });
+  }, [categories, imageChoices, imageSlots]);
 
   const groupedMenu = useMemo(() => {
     return sectionSlots.map((slot) => ({
@@ -121,14 +137,11 @@ export default function DashboardClient({
 
     const unsubSettings = onSnapshot(doc(db, "siteContent", "settings"), (snapshot) => {
       const settings = snapshot.data();
-      if (!sectionDirty && !savingSections) setSettingsJson(JSON.stringify(settings ?? {}, null, 2));
       const images = settings?.images as Record<string, string> | undefined;
       if (!sectionDirty && !savingSections) {
         if (images) {
           setImageSelections((current) => ({ ...current, ...images }));
         }
-
-        setCateringMenuHeading(resolveCateringMenuHeading(settings?.cateringMenuHeading as string | undefined));
       }
     });
 
@@ -144,7 +157,7 @@ export default function DashboardClient({
           category: data.category ?? "Breakfast",
           visible: data.visible ?? true,
           sortOrder: typeof data.sortOrder === "number" ? data.sortOrder : 0,
-          imageSrc: data.imageSrc ?? availableImages[0]?.src ?? "",
+          imageSrc: data.imageSrc ?? "",
         };
       });
 
@@ -157,7 +170,7 @@ export default function DashboardClient({
       unsubSettings();
       unsubMenu();
     };
-  }, [availableImages, menuDirty, savingMenu, savingSections, sectionDirty]);
+  }, [menuDirty, savingMenu, savingSections, sectionDirty]);
 
   const updateMenuItem = (id: string, field: keyof DashboardMenuItem, value: string | number | boolean) => {
     setMenuDirty(true);
@@ -185,10 +198,9 @@ export default function DashboardClient({
         return;
       }
 
-      setSectionStatus("Saving site content...");
+      setSectionStatus("Saving photos...");
 
       const nextImages = { ...imageSelections };
-      const nextCateringMenuHeading = resolveCateringMenuHeading(cateringMenuHeading);
 
       for (const slot of [...globalSlots, ...sectionSlots]) {
         const file = sectionUploads[slot.key];
@@ -199,14 +211,13 @@ export default function DashboardClient({
 
       await setDoc(
         doc(firestore, "siteContent", "settings"),
-        { images: nextImages, cateringMenuHeading: nextCateringMenuHeading, updatedAt: new Date().toISOString() },
+        { images: nextImages, updatedAt: new Date().toISOString() },
         { merge: true },
       );
       setImageSelections(nextImages);
-      setCateringMenuHeading(nextCateringMenuHeading);
       setSectionUploads({});
       setSectionDirty(false);
-      setSectionStatus("Site content saved.");
+      setSectionStatus("Photos saved.");
     });
   };
 
@@ -283,14 +294,6 @@ export default function DashboardClient({
     });
   };
 
-  const saveSettings = async () => {
-    if (!db) return;
-    try {
-      await setDoc(doc(db, "siteContent", "settings"), { ...JSON.parse(settingsJson), updatedAt: new Date().toISOString() });
-      setSettingsStatus("Site settings saved.");
-    } catch { setSettingsStatus("Settings must be valid JSON."); }
-  };
-
   return (
     <div className="mx-auto max-w-7xl">
       <div className="flex flex-col gap-4 border-b border-white/10 pb-8 lg:flex-row lg:items-end lg:justify-between">
@@ -332,7 +335,7 @@ export default function DashboardClient({
           onClick={saveSectionPhotos}
           className="inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-6 text-sm font-black text-white transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {savingSections ? "Saving..." : "Save site content"}
+          {savingSections ? "Saving..." : "Save photos"}
         </button>
         <button
           type="button"
@@ -346,64 +349,43 @@ export default function DashboardClient({
         {menuStatus ? <p className="self-center text-sm font-bold text-accent">{menuStatus}</p> : null}
       </div>
 
-      <section className="mt-8 rounded-3xl border border-white/10 bg-white/[0.06] p-6">
-        <p className="text-xs font-black uppercase tracking-[0.18em] text-accent">Single source of truth</p>
-        <h2 className="mt-2 text-3xl font-black">Site settings</h2>
-        <textarea value={settingsJson} onChange={(event) => setSettingsJson(event.target.value)} rows={14} className="mt-5 w-full rounded-2xl border border-white/10 bg-[#11100f] p-4 font-mono text-xs text-white" />
-        <div className="mt-4 flex gap-4"><button type="button" onClick={saveSettings} className="min-h-11 rounded-full bg-primary px-5 text-sm font-black text-white">Save site settings</button><p className="self-center text-sm font-bold text-accent">{settingsStatus}</p></div>
-      </section>
-
       <section className="mt-8 rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-[0_22px_70px_rgba(0,0,0,.22)]">
         <div className="flex flex-col gap-2">
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-accent">Site content</p>
-          <h2 className="text-3xl font-black">Homepage, about, location, and shared menu section content</h2>
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-accent">Photos</p>
+          <h2 className="text-3xl font-black">Website and menu photos</h2>
           <p className="max-w-3xl text-sm font-semibold leading-6 text-white/62">
-            Every field below loads from Firebase on the live site when you save it. If a field is not saved there yet, the website falls back to the current built-in content.
+            These images load from Firebase on the live site. Section copy is static in code; only photos and menu records are managed here.
           </p>
-        </div>
-
-        <div className="mt-6 rounded-2xl border border-white/10 bg-black/18 p-4">
-          <label className="grid gap-2 text-sm font-black">
-            Catering menu heading
-            <input
-              value={cateringMenuHeading}
-              onChange={(event) => {
-                setSectionDirty(true);
-                setCateringMenuHeading(event.target.value);
-                setSectionStatus("");
-              }}
-              className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
-            />
-          </label>
-          <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/46">cateringMenuHeading</p>
         </div>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
           {globalSlots.map((slot) => (
             <article key={slot.key} className="rounded-2xl border border-white/10 bg-black/18 p-4">
-              <img src={imageSelections[slot.key] ?? slot.defaultSrc} alt={slot.label} className="h-44 w-full rounded-2xl object-cover" />
+              <PhotoPreview src={imageSelections[slot.key] ?? slot.defaultSrc} alt={slot.label} className="h-44 w-full rounded-2xl object-cover" />
               <div className="mt-4">
                 <p className="text-sm font-black text-white">{slot.label}</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/46">{slot.key}</p>
               </div>
-              <label className="mt-4 grid gap-2 text-sm font-black">
-                Choose saved image
-                <select
-                  value={imageSelections[slot.key] ?? slot.defaultSrc}
-                  onChange={(event) => {
-                    setSectionDirty(true);
-                    setImageSelections((current) => ({ ...current, [slot.key]: event.target.value }));
-                    setSectionStatus("");
-                  }}
-                  className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
-                >
-                  {availableImages.map((image) => (
-                    <option key={image.src} value={image.src}>
-                      {image.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              {imageChoices.length ? (
+                <label className="mt-4 grid gap-2 text-sm font-black">
+                  Choose saved image
+                  <select
+                    value={imageSelections[slot.key] ?? slot.defaultSrc}
+                    onChange={(event) => {
+                      setSectionDirty(true);
+                      setImageSelections((current) => ({ ...current, [slot.key]: event.target.value }));
+                      setSectionStatus("");
+                    }}
+                    className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                  >
+                    {imageChoices.map((image) => (
+                      <option key={image.src} value={image.src}>
+                        {image.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : null}
               <label className="mt-3 grid gap-2 text-sm font-black">
                 Upload custom photo
                 <input
@@ -430,25 +412,27 @@ export default function DashboardClient({
           <article key={slot.key} className="rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-[0_22px_70px_rgba(0,0,0,.22)]">
             <div className="flex flex-col gap-5 xl:grid xl:grid-cols-[280px_1fr] xl:items-start">
               <div className="rounded-2xl border border-white/10 bg-black/18 p-4">
-                <img src={imageSelections[slot.key] ?? slot.defaultSrc} alt={slot.label} className="h-44 w-full rounded-2xl object-cover" />
-                <label className="mt-4 grid gap-2 text-sm font-black">
-                  Section photo
-                  <select
-                    value={imageSelections[slot.key] ?? slot.defaultSrc}
-                    onChange={(event) => {
-                      setSectionDirty(true);
-                      setImageSelections((current) => ({ ...current, [slot.key]: event.target.value }));
-                      setSectionStatus("");
-                    }}
-                    className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
-                  >
-                    {availableImages.map((image) => (
-                      <option key={image.src} value={image.src}>
-                        {image.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                <PhotoPreview src={imageSelections[slot.key] ?? slot.defaultSrc} alt={slot.label} className="h-44 w-full rounded-2xl object-cover" />
+                {imageChoices.length ? (
+                  <label className="mt-4 grid gap-2 text-sm font-black">
+                    Section photo
+                    <select
+                      value={imageSelections[slot.key] ?? slot.defaultSrc}
+                      onChange={(event) => {
+                        setSectionDirty(true);
+                        setImageSelections((current) => ({ ...current, [slot.key]: event.target.value }));
+                        setSectionStatus("");
+                      }}
+                      className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                    >
+                      {imageChoices.map((image) => (
+                        <option key={image.src} value={image.src}>
+                          {image.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                ) : null}
                 <label className="mt-3 grid gap-2 text-sm font-black">
                   Upload custom section photo
                   <input
@@ -488,21 +472,23 @@ export default function DashboardClient({
                       <article key={item.id} className="rounded-2xl border border-white/10 bg-black/18 p-4">
                         <div className="grid gap-4 xl:grid-cols-[180px_1fr_auto]">
                           <div>
-                            <img src={item.imageSrc} alt={item.name || "Menu item"} className="h-32 w-full rounded-2xl object-cover" />
-                            <label className="mt-3 grid gap-2 text-sm font-black">
-                              Item photo
-                              <select
-                                value={item.imageSrc}
-                                onChange={(event) => updateMenuItem(item.id, "imageSrc", event.target.value)}
-                                className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
-                              >
-                                {availableImages.map((image) => (
-                                  <option key={image.src} value={image.src}>
-                                    {image.label}
-                                  </option>
-                                ))}
-                              </select>
-                            </label>
+                            <PhotoPreview src={item.imageSrc} alt={item.name || "Menu item"} className="h-32 w-full rounded-2xl object-cover" />
+                            {imageChoices.length ? (
+                              <label className="mt-3 grid gap-2 text-sm font-black">
+                                Item photo
+                                <select
+                                  value={item.imageSrc}
+                                  onChange={(event) => updateMenuItem(item.id, "imageSrc", event.target.value)}
+                                  className="min-h-11 rounded-2xl border border-white/10 bg-[#11100f] px-4 text-sm font-semibold text-white outline-none transition focus:border-primary/40"
+                                >
+                                  {imageChoices.map((image) => (
+                                    <option key={image.src} value={image.src}>
+                                      {image.label}
+                                    </option>
+                                  ))}
+                                </select>
+                              </label>
+                            ) : null}
                             <label className="mt-3 grid gap-2 text-sm font-black">
                               Upload custom item photo
                               <input

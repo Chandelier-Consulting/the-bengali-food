@@ -6,7 +6,27 @@ import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebas
 import DashboardClient from "./DashboardClient";
 import { auth } from "@/lib/firebase-client";
 import { dashboardImageOptions, dashboardImageSlots, defaultImageSelections, defaultMenuItems } from "@/lib/dashboard-content";
-import { defaultCateringMenuHeading } from "@/lib/section-content";
+
+function getFirebaseErrorCode(error: unknown) {
+  if (typeof error !== "object" || error === null) return "";
+  const code = "code" in error && typeof error.code === "string" ? error.code : "";
+  const message = "message" in error && typeof error.message === "string" ? error.message : "";
+  return `${code} ${message}`;
+}
+
+function formatAuthError(error: unknown) {
+  const details = getFirebaseErrorCode(error);
+
+  if (details.includes("auth/configuration-not-found") || details.includes("CONFIGURATION_NOT_FOUND")) {
+    return "Firebase Auth is not enabled for this project yet. Enable Authentication > Email/Password in Firebase, create the manager user, then sign in again. (auth/configuration-not-found)";
+  }
+
+  if (details.includes("auth/invalid-credential") || details.includes("auth/user-not-found") || details.includes("auth/wrong-password")) {
+    return "The email or password did not match a Firebase dashboard user.";
+  }
+
+  return error instanceof Error ? error.message : "Could not sign in.";
+}
 
 export default function DashboardAccess() {
   const authAvailable = Boolean(auth);
@@ -43,8 +63,7 @@ export default function DashboardAccess() {
       await signInWithEmailAndPassword(auth, email.trim(), password);
       setPassword("");
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Could not sign in.";
-      setAuthError(message);
+      setAuthError(formatAuthError(error));
     } finally {
       setIsSubmitting(false);
     }
@@ -125,7 +144,6 @@ export default function DashboardAccess() {
       </div>
       <DashboardClient
         availableImages={dashboardImageOptions}
-        initialCateringMenuHeading={defaultCateringMenuHeading}
         initialImageSelections={defaultImageSelections()}
         initialMenuItems={defaultMenuItems()}
         imageSlots={dashboardImageSlots}
