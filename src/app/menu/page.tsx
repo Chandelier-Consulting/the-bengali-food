@@ -15,12 +15,14 @@ export default function MenuPage() {
 
   return (
     <>
-      <section className="px-5 pb-16 pt-32">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-xs font-black uppercase tracking-[.2em] text-accent">Live menu</p>
-          <h1 className="mt-5 max-w-4xl text-5xl font-black text-secondary sm:text-7xl">Bengali dishes, ready when you are.</h1>
-          <p className="mt-5 max-w-2xl text-lg font-semibold leading-8 text-muted">
-            Explore the current menu, then open the live ordering page for availability, pickup, delivery, and checkout.
+      <section className="section-shell pb-12 pt-32">
+        <div className="section-inner">
+          <p className="eyebrow">Live menu</p>
+          <h1 className="mt-4 max-w-4xl text-5xl font-extrabold tracking-tight text-secondary sm:text-7xl">
+            Bengali dishes, ready when you are.
+          </h1>
+          <p className="body-copy mt-5 max-w-2xl">
+            Every menu item below can carry its own managed photo, description, price, and visibility from the dashboard.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-primary px-7 font-black text-primary-foreground hover:bg-primary/90" label="Open live ordering menu" />
@@ -29,7 +31,7 @@ export default function MenuPage() {
         </div>
       </section>
 
-      <section className="sticky top-[72px] z-30 border-y border-border bg-background/92 px-5 py-4 backdrop-blur-xl">
+      <section className="sticky top-[72px] z-30 border-y border-border bg-background/95 px-5 py-3 backdrop-blur-xl">
         <nav aria-label="Menu categories" className="mx-auto flex max-w-6xl gap-2 overflow-x-auto">
           {categories.map((name) => (
             <a key={name} href={`#${name.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")}`} className="shrink-0 rounded-lg border border-border px-5 py-3 text-sm font-black">

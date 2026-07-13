@@ -3,9 +3,26 @@
 
 import { useSiteContent } from "./SiteContentProvider";
 import Reveal from "./Reveal";
+import type { MenuItem } from "@/lib/menu-data";
 
 function sectionId(name: string) {
   return name.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and");
+}
+
+function MenuItemPhoto({ item, fallback }: { item: MenuItem; fallback: string }) {
+  const src = item.imageSrc || fallback;
+
+  return (
+    <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-background">
+      {src ? (
+        <img src={src} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
+      ) : (
+        <div className="grid h-full place-items-center px-4 text-center text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">
+          Photo coming soon
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function ManagedMenuSections() {
@@ -21,29 +38,36 @@ export default function ManagedMenuSections() {
   ] as const);
 
   return (
-    <section className="px-5 py-24 sm:px-6 lg:py-32">
-      <div className="mx-auto grid max-w-6xl gap-14">
+    <section className="section-shell">
+      <div className="section-inner grid gap-16">
         {groups.map(([name, items]) => {
-          const imageSrc = settings.images[name] || items[0]?.imageSrc || settings.images.Hero;
+          const fallback = settings.images[name] || settings.images.Hero;
 
           return (
             <Reveal key={name}>
-              <section id={sectionId(name)} className="scroll-mt-36 overflow-hidden rounded-lg border border-border bg-surface">
-                <div className="grid lg:grid-cols-[.7fr_1.3fr]">
-                  <img src={imageSrc} alt={`${name} dishes`} className="h-72 w-full object-cover lg:h-full" />
-                  <div className="p-7 lg:p-10">
-                    <p className="text-xs font-black uppercase tracking-[.18em] text-accent">The Bengali Food</p>
-                    <h2 className="mt-3 text-4xl font-black text-secondary">{name}</h2>
-                    {items.map((item) => (
-                      <article key={item.id} className="grid gap-3 border-b border-border py-7 last:border-0 sm:grid-cols-[1fr_auto]">
-                        <div>
-                          <h3 className="text-xl font-black text-secondary">{item.name}</h3>
-                          <p className="mt-2 text-sm leading-6 text-muted">{item.description}</p>
-                        </div>
-                        <p className="font-black text-primary">{item.price}</p>
-                      </article>
-                    ))}
+              <section id={sectionId(name)} className="scroll-mt-32">
+                <div className="mb-8 grid gap-4 border-b border-border pb-5 md:grid-cols-[1fr_auto] md:items-end">
+                  <div>
+                    <p className="eyebrow">Menu section</p>
+                    <h2 className="mt-2 text-4xl font-extrabold tracking-tight text-secondary">{name}</h2>
                   </div>
+                  <p className="text-sm font-semibold text-muted-foreground">{items.length} items</p>
+                </div>
+                <div className="grid gap-5 md:grid-cols-2">
+                  {items.map((item) => (
+                    <article key={item.id} className="menu-card grid gap-4 p-3 sm:grid-cols-[150px_1fr]">
+                      <MenuItemPhoto item={item} fallback={fallback} />
+                      <div className="flex min-w-0 flex-col justify-between p-1">
+                        <div>
+                          <div className="flex items-start justify-between gap-4">
+                            <h3 className="text-lg font-extrabold leading-tight text-secondary">{item.name}</h3>
+                            <p className="shrink-0 font-extrabold tabular-nums text-primary">{item.price}</p>
+                          </div>
+                          <p className="mt-2 text-sm font-medium leading-6 text-muted-foreground">{item.description}</p>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
                 </div>
               </section>
             </Reveal>
