@@ -1,0 +1,26 @@
+tests/responsive-ui.test.mjs
+  s_f2da16c07146a0::t_3734e09edaaa4b 34,120-139
+  s_f2da16c07146a0::t_207c5bd6100ffb 140-141
+src/app/globals.css
+  s_f2da16c07146a0::t_b9d2fd2eecadd9 177-180
+  s_f2da16c07146a0::t_3677ba151f68cb 156-176,205-216
+src/app/about/page.tsx
+  s_f2da16c07146a0::t_8d479e7ef3549e 8-24,33,36-37,41,43-45,47,49,56-57,59-64,68-70,78-83,85-92,99,101-102,104-112,114-151,156-183,188
+  s_f2da16c07146a0::t_2635d7f3d81798 48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "4c034c384cc4f6d6c03c0ef74fdadb6bfbebd056",
+  "prompts": {},
+  "sessions": {
+    "s_f2da16c07146a0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f5a0e-07a1-7b81-94d5-390a085229bc",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Pranav Kannepalli <pranav.kannepalli@gmail.com>"
+    }
+  }
+}
