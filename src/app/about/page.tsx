@@ -181,13 +181,13 @@ export default function AboutPage() {
           </Reveal>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {featuredItems.map((item, index) => (
-              <Reveal key={item.id} variant="float" delay={index * 0.05}>
-                <article className="menu-card overflow-hidden">
+              <Reveal key={item.id} className="h-full" variant="float" delay={index * 0.05}>
+                <article className="menu-card flex h-full flex-col overflow-hidden">
                   <img src={item.imageSrc || heroImage} alt={item.name} className="h-52 w-full object-cover" loading="lazy" />
-                  <div className="p-5">
+                  <div className="flex flex-1 flex-col p-5">
                     <h3 className="font-heading text-2xl font-extrabold text-secondary">{item.name}</h3>
                     <p className="body-copy mt-2 text-sm">{item.description}</p>
-                    <p className="mt-4 font-extrabold text-primary">{item.price}</p>
+                    <p className="mt-auto pt-4 font-extrabold text-primary">{item.price}</p>
                   </div>
                 </article>
               </Reveal>

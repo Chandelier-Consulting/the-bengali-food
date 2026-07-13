@@ -96,12 +96,14 @@ export default function GroupOrdersPage() {
           </Reveal>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {featuredItems.map((item, index) => (
-              <Reveal key={item.id} variant="float" delay={index * 0.05}>
-                <article key={item.id} className="border-b border-border pb-5">
+              <Reveal key={item.id} className="h-full" variant="float" delay={index * 0.05}>
+                <article key={item.id} className="menu-card flex h-full flex-col overflow-hidden">
                   <img src={item.imageSrc || heroImage} alt={item.name} className="h-48 w-full object-cover" loading="lazy" />
-                  <h3 className="mt-4 text-xl font-extrabold text-secondary">{item.name}</h3>
-                  <p className="body-copy mt-2 text-sm">{item.description}</p>
-                  <p className="mt-4 font-extrabold text-primary">{item.price}</p>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="text-xl font-extrabold text-secondary">{item.name}</h3>
+                    <p className="body-copy mt-2 text-sm">{item.description}</p>
+                    <p className="mt-auto pt-4 font-extrabold text-primary">{item.price}</p>
+                  </div>
                 </article>
               </Reveal>
             ))}

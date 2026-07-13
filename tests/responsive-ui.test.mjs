@@ -180,6 +180,22 @@ test("full menu renders individual configurable item photos", async () => {
   assert.match(menuSections, /MenuItemPhoto/);
 });
 
+test("menu cards share equal-height layout and full-height horizontal photos", async () => {
+  const css = await read("../src/app/globals.css");
+  const home = await read("../src/components/HomeTruckJourney.tsx");
+  const menuSections = await read("../src/components/ManagedMenuSections.tsx");
+  const about = await read("../src/app/about/page.tsx");
+  const groupOrders = await read("../src/app/group-orders/page.tsx");
+
+  assert.match(css, /\.menu-card\s*\{[\s\S]*height:\s*100%/);
+  assert.match(home, /<Reveal key=\{item\.id\} className="h-full" variant="float"/);
+  assert.match(about, /<Reveal key=\{item\.id\} className="h-full" variant="float"/);
+  assert.match(groupOrders, /<Reveal key=\{item\.id\} className="h-full" variant="float"/);
+  assert.match(menuSections, /<Reveal key=\{item\.id\} className="h-full" variant="float"/);
+  assert.match(menuSections, /className="relative h-full min-h-48 overflow-hidden/);
+  assert.doesNotMatch(menuSections, /MenuItemPhoto[\s\S]*aspect-\[4\/3\]/);
+});
+
 test("mobile quick actions use three columns for three actions", async () => {
   const mobile = await read("../src/components/MobileActionBar.tsx");
   assert.match(mobile, /grid-cols-3/);

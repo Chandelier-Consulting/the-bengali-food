@@ -13,7 +13,7 @@ function MenuItemPhoto({ item, fallback }: { item: MenuItem; fallback: string })
   const src = item.imageSrc || fallback;
 
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-background">
+    <div className="relative h-full min-h-48 overflow-hidden rounded-lg border border-border bg-background">
       {src ? (
         <img src={src} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
       ) : (
@@ -55,8 +55,8 @@ export default function ManagedMenuSections() {
                 </div>
                 <div className="grid gap-5 md:grid-cols-2">
                   {items.map((item, index) => (
-                    <Reveal key={item.id} variant="float" delay={index * 0.04}>
-                      <article key={item.id} className="menu-card grid gap-4 p-3 sm:grid-cols-[150px_1fr]">
+                    <Reveal key={item.id} className="h-full" variant="float" delay={index * 0.04}>
+                      <article key={item.id} className="menu-card grid h-full gap-4 p-3 sm:grid-cols-[150px_1fr]">
                         <MenuItemPhoto item={item} fallback={fallback} />
                         <div className="flex min-w-0 flex-col justify-between p-1">
                           <div>

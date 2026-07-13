@@ -192,6 +192,7 @@ html {
 }
 
 .menu-card {
+  height: 100%;
   border: 1px solid var(--border);
   background: var(--surface);
   border-radius: 0.5rem;
