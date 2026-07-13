@@ -6,9 +6,9 @@ import Reveal from "@/components/Reveal";
 import { useSiteContent } from "@/components/SiteContentProvider";
 
 const facts = [
-  ["Service area", "San Jose, CA", "Pickup and delivery options are available through the live ordering menu."],
-  ["Live availability", "Check before checkout", "Hours, timing, and current dishes can change, so the ordering menu is the source of truth."],
-  ["Order online first", "Start with the live menu", "Choose the fulfillment option there and complete your order directly with the ordering provider."],
+  ["Service area", "San Jose, CA", "Pickup and delivery are handled through online ordering."],
+  ["Timing", "Check before checkout", "Hours and item availability can change during the day."],
+  ["Fulfillment", "Order online first", "Choose pickup or delivery when you place the order."],
 ] as const;
 
 export default function LocationPage() {
@@ -26,7 +26,7 @@ export default function LocationPage() {
             <p className="eyebrow">Pickup and delivery</p>
             <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[0.98] text-secondary sm:text-7xl">Order The Bengali Food in San Jose.</h1>
             <p className="body-copy mt-6 max-w-2xl text-lg">
-              Use the live ordering menu to choose pickup or delivery, check current availability, and complete checkout.
+              Start online to see today&apos;s dishes, pickup timing, and delivery options.
             </p>
             <OrderOnlineButton className="mt-8 inline-flex min-h-12 items-center rounded-lg bg-primary px-7 font-bold text-primary-foreground hover:bg-primary-hover" label="Order pickup or delivery" />
           </Reveal>
@@ -59,9 +59,9 @@ export default function LocationPage() {
       <section className="section-shell">
         <Reveal className="section-inner border-l-2 border-primary pl-6 sm:pl-8">
           <p className="eyebrow">Before checkout</p>
-          <h2 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Use the ordering page for current availability.</h2>
+          <h2 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Check timing before you plan the meal.</h2>
           <p className="body-copy mt-5 max-w-2xl">
-            The live menu is the accurate place to confirm dishes, pickup timing, delivery options, and fulfillment before you order.
+            The ordering page confirms what is available today and which fulfillment options are open.
           </p>
         </Reveal>
       </section>

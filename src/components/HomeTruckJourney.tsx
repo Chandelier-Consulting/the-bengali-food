@@ -9,21 +9,21 @@ import { useSiteContent } from "./SiteContentProvider";
 
 const proof = [
   ["San Jose", "pickup and delivery"],
-  ["Bengali staples", "fish, dal, rice, sweets"],
-  ["Group ready", "comfort food for gatherings"],
-  ["DoorDash", "live ordering menu"],
+  ["Fish-first menu", "mustard, rohu, hilsa, prawns"],
+  ["Add the sides", "rice, dal, vegetables, sweets"],
+  ["Order online", "current pickup and delivery"],
 ];
 
 const tableValues = [
-  ["Mustard and fish", "A proper Bengali table often starts with fish, mustard, and rice. The menu keeps those familiar anchors easy to order."],
-  ["Vegetables and dal", "Lentils, vegetables, and sides round out the meal so a pickup order feels complete, not like a single entree."],
-  ["Built for sharing", "Curries, rice, and sweets work well for a family dinner, office lunch, or a larger table where everyone wants a little of everything."],
+  ["Mustard and fish", "Start with the dishes that define the kitchen: shorshe, kalia, rohu, hilsa, and prawns."],
+  ["Rice and dal", "The plain things matter here. Rice and lentils carry the heat, mustard, and oil."],
+  ["Sweets at the end", "Rasgulla or rasmalai keeps the meal Bengali all the way through dessert."],
 ];
 
 const orderSteps = [
-  ["01", "Choose the anchors", "Start with fish curry, rice, vegetables, and dessert so the order has balance."],
-  ["02", "Check the live menu", "Use the ordering link for current availability, pickup timing, and delivery options."],
-  ["03", "Set the table", "Add sides and sweets for a fuller Bengali meal that travels well."],
+  ["01", "Pick the fish", "Choose the curry first: mustard, kalia, shrimp, or rohu."],
+  ["02", "Add rice and dal", "Let the sides do their job. They make the curries easier to eat and easier to share."],
+  ["03", "Finish with sweets", "Add rasgulla or rasmalai before checkout if the meal needs a proper ending."],
 ];
 
 export default function HomeTruckJourney() {
@@ -48,10 +48,10 @@ export default function HomeTruckJourney() {
           <div className="max-w-4xl">
             <p className="eyebrow text-[#f4d28a]">Authentic Bengali cuisine · San Jose</p>
             <h1 className="mt-5 max-w-4xl text-5xl font-extrabold leading-[0.96] tracking-tight sm:text-7xl">
-              Bengali comfort food, built for the whole table.
+              Bengali fish curries, rice, dal, and sweets in San Jose.
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-white/85">
-              Mustard-rich fish curries, comforting lentils, fragrant rice, vegetables, and Bengali sweets for pickup, delivery, and shared tables.
+              Order mustard hilsa, rohu kalia, shrimp curry, rice, dal, and Bengali sweets for pickup or delivery.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <OrderOnlineButton className="min-h-12 bg-primary px-7 text-base font-bold text-primary-foreground hover:bg-primary-hover" label="Order pickup or delivery" />
@@ -64,9 +64,9 @@ export default function HomeTruckJourney() {
       </section>
 
       <section className="border-y border-border bg-surface px-5 py-5">
-        <div className="mx-auto grid max-w-6xl divide-y divide-border sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl divide-y divide-border sm:grid-cols-3 sm:divide-y-0">
           {proof.map(([value, label]) => (
-            <div key={label} className="py-4 sm:px-5 sm:first:pl-0 sm:odd:border-r sm:odd:border-border lg:border-r lg:last:border-r-0">
+            <div key={label} className="py-4 sm:border-r sm:border-border sm:px-5 sm:first:pl-0 sm:last:border-r-0">
               <p className="text-lg font-extrabold text-secondary">{value}</p>
               <p className="mt-1 text-sm font-medium text-muted-foreground">{label}</p>
             </div>
@@ -82,7 +82,7 @@ export default function HomeTruckJourney() {
               <h2 className="mt-4 max-w-xl text-4xl font-extrabold leading-tight tracking-tight text-secondary sm:text-5xl">Start with the dishes that carry the meal.</h2>
             </div>
             <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-              The fastest order is a balanced one: fish curry or prawns, rice, a vegetable or dal, and something sweet.
+              Start with a fish curry, add rice or dal, then finish with something sweet.
             </p>
           </Reveal>
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -106,14 +106,14 @@ export default function HomeTruckJourney() {
             <img src={fishImage} alt="Bengali fish curry" className="aspect-[4/5] h-full w-full object-cover" loading="lazy" />
             <div className="grid gap-4">
               <img src={classicImage} alt="Bengali meal spread" className="aspect-[4/3] w-full object-cover" loading="lazy" />
-              <p className="border-l-2 border-primary pl-4 text-sm font-medium leading-6 text-muted-foreground">Fish, rice, dal, vegetables, and sweets belong on the same table.</p>
+              <p className="border-l-2 border-primary pl-4 text-sm font-medium leading-6 text-muted-foreground">Mustard fish needs rice. Dal and sweets make it feel finished.</p>
             </div>
           </Reveal>
           <Reveal>
             <p className="eyebrow">The Bengali table</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-secondary sm:text-5xl">Think in courses, not single dishes.</h2>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-secondary sm:text-5xl">Build the order the way Bengali food is eaten.</h2>
             <p className="mt-5 max-w-xl text-base font-medium leading-7 text-muted-foreground">
-              Bengali food works best as a spread. Pair richer fish or prawn dishes with rice, dal, vegetables, and sweets.
+              Rich fish curries make more sense with rice, dal, vegetables, and a sweet finish.
             </p>
             <div className="mt-8 divide-y divide-border border-y border-border">
               {tableValues.map(([title, body]) => (
@@ -132,9 +132,9 @@ export default function HomeTruckJourney() {
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(27,19,15,.9),rgba(27,19,15,.5))]" />
         <Reveal className="mx-auto max-w-6xl">
           <p className="eyebrow text-[#f4d28a]">For shared meals</p>
-          <h2 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">Bring Bengali comfort food to the gathering.</h2>
+          <h2 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">Order enough curry, rice, and sweets for everyone.</h2>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">
-            For a family dinner, office lunch, or small event, order a few curries, rice, and desserts so the table feels complete.
+            For a family dinner or office lunch, choose a few curries and fill in the meal with rice, dal, and dessert.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <OrderOnlineButton className="min-h-12 bg-primary px-7 font-bold text-primary-foreground hover:bg-primary-hover" label="Start an order" />
@@ -149,7 +149,7 @@ export default function HomeTruckJourney() {
         <div className="section-inner">
           <Reveal className="max-w-2xl">
             <p className="eyebrow">How to order</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-secondary sm:text-5xl">Build the table around a few reliable anchors.</h2>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-secondary sm:text-5xl">A simple way to order Bengali food.</h2>
           </Reveal>
           <ol className="mt-10 grid gap-8 md:grid-cols-3">
             {orderSteps.map(([number, title, body]) => (

@@ -59,12 +59,12 @@ test("homepage preserves the approved six-band editorial ordering structure", as
   ]);
 
   for (const marker of [
-    "Bengali comfort food, built for the whole table.",
+    "Bengali fish curries, rice, dal, and sweets in San Jose.",
     "San Jose",
     "Current favorites",
     "The Bengali table",
-  "For shared meals",
-  "How to order",
+    "For shared meals",
+    "How to order",
   ]) {
     assert.ok(pageMarkup.includes(marker), `homepage is missing the ${marker} editorial marker`);
   }

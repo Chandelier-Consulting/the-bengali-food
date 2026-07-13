@@ -7,9 +7,9 @@ import { useSiteContent } from "@/components/SiteContentProvider";
 
 const values = [
   ["Fish at the center", "Mustard, rohu, hilsa, prawns, and rice are the anchors of the Bengali table."],
-  ["Vegetable balance", "Lentils and vegetables bring contrast to the curries and make the meal easier to share."],
-  ["Home-style comfort", "The cooking is generous, familiar, and made for bringing a complete meal home."],
-  ["Shared plates", "Bengali food comes together as a spread, especially for families and groups."],
+  ["Dal and vegetables", "Lentils and vegetables keep the richer curries grounded."],
+  ["Home-style comfort", "The cooking is direct, generous, and made to travel well."],
+  ["Sweets matter", "Rasgulla and rasmalai are not extras here. They finish the meal."],
 ] as const;
 
 export default function AboutPage() {
@@ -31,7 +31,7 @@ export default function AboutPage() {
             <p className="eyebrow text-[#f4d28a]">Our table</p>
             <h1 className="mt-5 text-5xl font-extrabold leading-[0.98] sm:text-7xl">Bengali food has a language of its own.</h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">
-              Mustard, fish, lentils, seasonal vegetables, rice, and carefully built spice are at the center of the cooking.
+              Mustard oil, river fish, lentils, rice, and slow-built spice carry the cooking.
             </p>
           </div>
         </Reveal>
@@ -44,9 +44,9 @@ export default function AboutPage() {
           </Reveal>
           <Reveal>
             <p className="eyebrow">What we cook around</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">A full meal, not a single dish.</h2>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">The order starts with fish and rice.</h2>
             <p className="body-copy mt-5 max-w-xl">
-              Bengali food is strongest when the table has contrast: a rich fish curry, plain rice, dal, vegetables, and sweets at the end.
+              Rich curry needs plain rice. Dal, vegetables, and sweets bring the rest of the meal into focus.
             </p>
           </Reveal>
         </div>
@@ -56,7 +56,7 @@ export default function AboutPage() {
         <div className="section-inner">
           <Reveal className="max-w-2xl">
             <p className="eyebrow">Comfort in every course</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">The menu is built around familiar Bengali anchors.</h2>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Familiar anchors, cooked for takeout.</h2>
           </Reveal>
           <div className="mt-10 border-b border-border">
             {values.map(([title, body]) => (
@@ -73,7 +73,7 @@ export default function AboutPage() {
         <div className="section-inner grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <Reveal>
             <p className="eyebrow">On the menu</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Choose a few sections and build a complete table.</h2>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Pick across the menu, not just one curry.</h2>
           </Reveal>
           <Reveal className="flex flex-wrap gap-2 lg:pt-2">
             {categories.map((category) => (
@@ -89,9 +89,9 @@ export default function AboutPage() {
         <Reveal className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[.14em] text-primary-foreground/72">Ready to eat</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight">Open the live menu and order the current dishes.</h2>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight">Order fish curry, rice, dal, and sweets today.</h2>
           </div>
-          <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-foreground px-7 font-bold text-background hover:bg-foreground/90" label="Explore the live menu" />
+          <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-foreground px-7 font-bold text-background hover:bg-foreground/90" label="Order online" />
         </Reveal>
       </section>
     </>

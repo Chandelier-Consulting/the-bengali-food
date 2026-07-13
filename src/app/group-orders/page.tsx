@@ -7,16 +7,16 @@ import Reveal from "@/components/Reveal";
 import { useSiteContent } from "@/components/SiteContentProvider";
 
 const occasions = [
-  ["Office lunches", "A generous Bengali spread makes team meals feel considered without making ordering complicated."],
-  ["Family tables", "Choose dishes that let everyone share fish, rice, lentils, vegetables, and sweets."],
-  ["Special gatherings", "Build the meal around current menu items and add enough sides for a complete table."],
+  ["Office lunches", "Curries, rice, and sweets make a team meal feel planned without needing a custom order."],
+  ["Family tables", "Choose enough fish, rice, dal, and vegetables for everyone to take a little of each."],
+  ["Small gatherings", "Add sweets and sides so the order feels finished when it arrives."],
 ] as const;
 
 const checklist = [
   ["01", "Start with headcount", "Know how many full plates you need before choosing dishes."],
-  ["02", "Anchor the meal", "Pick fish, shrimp, or another main curry, then add rice, lentils, vegetables, and sweets."],
-  ["03", "Use live availability", "The ordering menu shows what is currently available for pickup or delivery."],
-  ["04", "Keep it shareable", "Curries and sides work best when the table can mix and match."],
+  ["02", "Choose the curry", "Pick fish, shrimp, or another main dish before adding sides."],
+  ["03", "Count the rice", "Rice, dal, and vegetables are what make the order stretch cleanly."],
+  ["04", "Add dessert", "Rasgulla or rasmalai is the easiest way to finish a shared meal."],
 ] as const;
 
 export default function GroupOrdersPage() {
@@ -33,9 +33,9 @@ export default function GroupOrdersPage() {
         <div className="section-inner grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
           <Reveal>
             <p className="eyebrow">Group orders and gatherings</p>
-            <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[0.98] text-secondary sm:text-7xl">Bengali food for a table worth gathering around.</h1>
+            <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[0.98] text-secondary sm:text-7xl">Bengali curries and sides for group orders.</h1>
             <p className="body-copy mt-6 max-w-2xl text-lg">
-              Plan around curries, rice, lentils, vegetables, and sweets so the group gets a full meal, not a pile of disconnected items.
+              Build around fish curry, rice, dal, vegetables, and sweets so everyone can share the same meal.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <OrderOnlineButton className="min-h-12 rounded-lg bg-primary px-7 font-bold text-primary-foreground hover:bg-primary-hover" label="Start an order" />
@@ -54,7 +54,7 @@ export default function GroupOrdersPage() {
         <div className="section-inner">
           <Reveal className="max-w-2xl">
             <p className="eyebrow">Good for</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Made for the whole table.</h2>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Good for orders that need to share well.</h2>
           </Reveal>
           <div className="mt-10 grid gap-x-10 divide-y divide-border border-y border-border md:grid-cols-3 md:divide-y-0">
             {occasions.map(([title, body]) => (
@@ -90,9 +90,9 @@ export default function GroupOrdersPage() {
           <Reveal className="grid gap-6 border-b border-border pb-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
             <div>
               <p className="eyebrow">Current menu anchors</p>
-              <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Use the live menu to shape the spread.</h2>
+              <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Start with a few current menu anchors.</h2>
             </div>
-            <p className="body-copy max-w-2xl">These examples come from the current managed menu. Availability and pricing remain current on the ordering page.</p>
+            <p className="body-copy max-w-2xl">These dishes are useful starting points when you are ordering for more than one household.</p>
           </Reveal>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {featuredItems.map((item) => (
@@ -111,7 +111,7 @@ export default function GroupOrdersPage() {
         <Reveal className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[.14em] text-primary-foreground/72">Ready to plan the table?</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight">Start with the live menu and build a meal for everyone.</h2>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight">Choose the curries, then add rice, dal, and sweets.</h2>
           </div>
           <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-foreground px-7 font-bold text-background hover:bg-foreground/90" label="Start an order" />
         </Reveal>

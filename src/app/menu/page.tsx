@@ -19,13 +19,13 @@ export default function MenuPage() {
         <div className="section-inner">
           <p className="eyebrow">Live menu</p>
           <h1 className="mt-4 max-w-4xl text-5xl font-extrabold tracking-tight text-secondary sm:text-7xl">
-            Bengali dishes, ready when you are.
+            Fish curry, rice, dal, and sweets for pickup or delivery.
           </h1>
           <p className="body-copy mt-5 max-w-2xl">
-            Explore Bengali favorites, check today&apos;s availability, then choose pickup or delivery on the live ordering menu.
+            Browse the current Bengali menu, then open ordering for timing, pickup, delivery, and checkout.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-primary px-7 font-black text-primary-foreground hover:bg-primary/90" label="Open live ordering menu" />
+            <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-primary px-7 font-black text-primary-foreground hover:bg-primary/90" label="Order online" />
             <Link href="/group-orders" className="inline-flex min-h-12 items-center rounded-lg border border-border px-7 font-black text-secondary">Plan a group order</Link>
           </div>
         </div>
@@ -47,9 +47,9 @@ export default function MenuPage() {
         <Reveal className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <p className="text-xs font-black uppercase tracking-[.2em] text-primary-foreground/72">Checkout</p>
-            <h2 className="mt-3 text-4xl font-black">Use the live menu before placing the order.</h2>
+            <h2 className="mt-3 text-4xl font-black">Open ordering when you&apos;re ready to check out.</h2>
             <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-primary-foreground/80">
-              Review dishes and current availability before choosing pickup or delivery.
+              The ordering page confirms today&apos;s timing and fulfillment options.
             </p>
           </div>
           <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-foreground px-7 font-black text-background hover:bg-foreground/90" label="Order now" />
