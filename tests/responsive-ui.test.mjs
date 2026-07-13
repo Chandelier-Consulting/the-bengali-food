@@ -43,6 +43,32 @@ test("public pages include Tomy's-level content sections", async () => {
     assert.ok(sectionCount >= minimumSections, `${file} has ${sectionCount} sections, expected at least ${minimumSections}`);
   }
 });
+
+test("homepage preserves the approved six-band editorial ordering structure", async () => {
+  const home = await read("../src/components/HomeTruckJourney.tsx");
+  const pageMarkup = home.slice(home.indexOf("return ("));
+  const bandClasses = [...pageMarkup.matchAll(/<section className="([^"]+)"/g)].map(([, className]) => className);
+
+  assert.deepEqual(bandClasses, [
+    "relative isolate min-h-dvh overflow-hidden bg-kitchen-night bg-[var(--kitchen-night)] px-5 pb-20 pt-28 text-white",
+    "border-y border-border bg-surface px-5 py-5",
+    "section-shell",
+    "section-shell bg-surface",
+    "relative isolate overflow-hidden px-5 py-28 text-white",
+    "section-shell",
+  ]);
+
+  for (const marker of [
+    "Bengali comfort food, built for the whole table.",
+    "San Jose",
+    "Current favorites",
+    "The Bengali table",
+  "For shared meals",
+  "How to order",
+  ]) {
+    assert.ok(pageMarkup.includes(marker), `homepage is missing the ${marker} editorial marker`);
+  }
+});
 test("public page prose is static while photos and menu stay managed", async () => {
   const files = [
     "../src/components/HomeTruckJourney.tsx",
