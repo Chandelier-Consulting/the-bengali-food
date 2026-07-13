@@ -2,30 +2,22 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Link from "next/link";
-import { FaBriefcase, FaCalendarDay, FaListCheck, FaPeopleGroup, FaUsers } from "react-icons/fa6";
 import OrderOnlineButton from "@/components/OrderOnlineButton";
 import Reveal from "@/components/Reveal";
 import { useSiteContent } from "@/components/SiteContentProvider";
 
 const occasions = [
-  [FaBriefcase, "Office lunches", "A generous Bengali spread makes team meals feel considered without making ordering complicated."],
-  [FaUsers, "Family tables", "Choose dishes that let everyone share fish, rice, lentils, vegetables, and sweets."],
-  [FaCalendarDay, "Special gatherings", "Build the meal around current menu items and add enough sides for a complete table."],
+  ["Office lunches", "A generous Bengali spread makes team meals feel considered without making ordering complicated."],
+  ["Family tables", "Choose dishes that let everyone share fish, rice, lentils, vegetables, and sweets."],
+  ["Special gatherings", "Build the meal around current menu items and add enough sides for a complete table."],
 ] as const;
 
-const questions = [
-  "How many people are eating?",
-  "Which curry should anchor the table?",
-  "How much rice and sides do you need?",
-  "Should dessert be part of the order?",
-];
-
-const planningNotes = [
-  ["Start with headcount", "A group order is easier when you know how many full plates you need before choosing dishes."],
-  ["Anchor the meal", "Pick fish, shrimp, or another main curry first, then add rice, lentils, vegetables, and sweets."],
-  ["Use live availability", "The ordering menu shows what is currently available for pickup or delivery."],
-  ["Keep it shareable", "Curries and sides work best when the table can mix and match."],
-];
+const checklist = [
+  ["01", "Start with headcount", "Know how many full plates you need before choosing dishes."],
+  ["02", "Anchor the meal", "Pick fish, shrimp, or another main curry, then add rice, lentils, vegetables, and sweets."],
+  ["03", "Use live availability", "The ordering menu shows what is currently available for pickup or delivery."],
+  ["04", "Keep it shareable", "Curries and sides work best when the table can mix and match."],
+] as const;
 
 export default function GroupOrdersPage() {
   const { settings, menuItems } = useSiteContent();
@@ -33,118 +25,95 @@ export default function GroupOrdersPage() {
   if (!settings) return null;
 
   const heroImage = settings.images.Hero;
-  const fishImage = settings.images["Fish & Seafood"] || heroImage;
   const featuredItems = menuItems.slice(0, 3);
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-[var(--kitchen-night)] px-5 pb-20 pt-32 text-white">
-        <img src={heroImage} alt="Bengali dishes for a group" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-35" />
-        <div className="absolute inset-0 -z-10 bg-black/68" />
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[.94fr_1.06fr] lg:items-center">
+      <section className="section-shell pt-32">
+        <div className="section-inner grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
           <Reveal>
-            <p className="text-xs font-black uppercase tracking-[.2em] text-accent">Group orders and gatherings</p>
-            <h1 className="mt-5 max-w-4xl text-5xl font-black sm:text-7xl">Bengali food for a table worth gathering around.</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">
+            <p className="eyebrow">Group orders and gatherings</p>
+            <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[0.98] text-secondary sm:text-7xl">Bengali food for a table worth gathering around.</h1>
+            <p className="body-copy mt-6 max-w-2xl text-lg">
               Plan around curries, rice, lentils, vegetables, and sweets so the group gets a full meal, not a pile of disconnected items.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-primary px-7 font-black text-primary-foreground hover:bg-primary/90" label="Start an order" />
-              <Link href="/menu" className="inline-flex min-h-12 items-center rounded-lg border border-white/25 px-7 font-black text-white hover:bg-white/10">Check the menu</Link>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <OrderOnlineButton className="min-h-12 rounded-lg bg-primary px-7 font-bold text-primary-foreground hover:bg-primary-hover" label="Start an order" />
+              <Link href="/menu" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border px-7 font-bold text-secondary transition-colors hover:bg-surface">
+                Check the menu
+              </Link>
             </div>
           </Reveal>
-          <Reveal className="overflow-hidden rounded-3xl border border-white/12 bg-white/8 p-3 backdrop-blur" variant="float">
-            <img src={fishImage} alt="Bengali fish curry" className="aspect-[4/3] w-full rounded-2xl object-cover" />
+          <Reveal className="media-frame rounded-lg" variant="float">
+            <img src={heroImage} alt="Bengali dishes for a group" className="aspect-[4/3] w-full object-cover" />
           </Reveal>
         </div>
       </section>
 
-      <section className="px-5 py-24">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <p className="text-xs font-black uppercase tracking-[.2em] text-accent">Good for</p>
-            <h2 className="mt-4 text-4xl font-black text-secondary sm:text-6xl">Made for the whole table.</h2>
+      <section className="section-shell bg-surface">
+        <div className="section-inner">
+          <Reveal className="max-w-2xl">
+            <p className="eyebrow">Good for</p>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Made for the whole table.</h2>
           </Reveal>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {occasions.map(([Icon, title, body]) => (
-              <Reveal key={title} className="rounded-lg border border-border bg-surface p-6" variant="float">
-                <Icon className="text-2xl text-accent" aria-hidden />
-                <h3 className="mt-4 text-2xl font-black text-secondary">{title}</h3>
-                <p className="mt-2 text-sm font-semibold leading-6 text-muted">{body}</p>
-              </Reveal>
+          <div className="mt-10 grid gap-x-10 divide-y divide-border border-y border-border md:grid-cols-3 md:divide-y-0">
+            {occasions.map(([title, body]) => (
+              <article key={title} className="py-5 md:border-r md:border-border md:py-7 md:pr-7 md:pl-7 md:first:pl-0 md:last:border-r-0">
+                <h3 className="text-xl font-extrabold text-secondary">{title}</h3>
+                <p className="body-copy mt-2 text-sm">{body}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-primary px-5 py-20 text-primary-foreground">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
-          <Reveal>
-            <p className="font-black uppercase tracking-[.18em] text-primary-foreground/70">Plan the order</p>
-            <h2 className="mt-4 text-4xl font-black">A few details make group ordering easy.</h2>
-          </Reveal>
-          <div className="grid gap-3">
-            {questions.map((question, index) => (
-              <Reveal key={question} className="border-t border-primary-foreground/25 pt-3 font-bold" variant="float">
-                <span className="mr-3 text-primary-foreground/70">0{index + 1}</span>{question}
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-20">
-        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {planningNotes.map(([title, body]) => (
-            <Reveal key={title} className="rounded-lg border border-border bg-surface p-6" variant="float">
-              <FaListCheck className="text-2xl text-accent" aria-hidden />
-              <h3 className="mt-4 text-2xl font-black text-secondary">{title}</h3>
-              <p className="mt-2 text-sm font-semibold leading-6 text-muted">{body}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-surface px-5 py-20">
+      <section className="bg-secondary px-5 py-20 text-secondary-foreground">
         <div className="mx-auto max-w-6xl">
-          <Reveal className="grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+          <Reveal className="max-w-2xl">
+            <p className="text-xs font-extrabold uppercase tracking-[.14em] text-[#f4d28a]">Plan the order</p>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">A few details make group ordering easy.</h2>
+          </Reveal>
+          <ol className="mt-10 grid gap-x-8 gap-y-6 md:grid-cols-2">
+            {checklist.map(([number, title, body]) => (
+              <li key={number} className="border-t border-secondary-foreground/25 pt-4">
+                <p className="text-sm font-extrabold tracking-[.12em] text-[#f4d28a]">{number}</p>
+                <h3 className="mt-2 text-xl font-extrabold">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-secondary-foreground/75">{body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <div className="section-inner">
+          <Reveal className="grid gap-6 border-b border-border pb-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
             <div>
-              <p className="text-xs font-black uppercase tracking-[.2em] text-accent">Current menu anchors</p>
-              <h2 className="mt-4 text-4xl font-black text-secondary sm:text-6xl">Use the live menu to shape the spread.</h2>
+              <p className="eyebrow">Current menu anchors</p>
+              <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Use the live menu to shape the spread.</h2>
             </div>
-            <p className="text-base font-semibold leading-7 text-muted">
-              These items come from the managed menu. Update them in the dashboard when availability or pricing changes.
-            </p>
+            <p className="body-copy max-w-2xl">These examples come from the current managed menu. Availability and pricing remain current on the ordering page.</p>
           </Reveal>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
             {featuredItems.map((item) => (
-              <Reveal key={item.id} className="overflow-hidden rounded-lg border border-border bg-background" variant="float">
-                <img src={item.imageSrc} alt={item.name} className="h-52 w-full object-cover" />
-                <div className="p-6">
-                  <h3 className="text-2xl font-black text-secondary">{item.name}</h3>
-                  <p className="mt-2 text-sm font-semibold leading-6 text-muted">{item.description}</p>
-                  <p className="mt-4 font-black text-primary">{item.price}</p>
-                </div>
-              </Reveal>
+              <article key={item.id} className="border-b border-border pb-5">
+                <img src={item.imageSrc || heroImage} alt={item.name} className="h-48 w-full object-cover" loading="lazy" />
+                <h3 className="mt-4 text-xl font-extrabold text-secondary">{item.name}</h3>
+                <p className="body-copy mt-2 text-sm">{item.description}</p>
+                <p className="mt-4 font-extrabold text-primary">{item.price}</p>
+              </article>
             ))}
-          </div>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-primary px-7 font-black text-primary-foreground hover:bg-primary/90" label="Open live menu" />
-            <Link href="/menu" className="inline-flex min-h-12 items-center rounded-lg border border-border px-7 font-black text-secondary">View full menu</Link>
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-20">
-        <Reveal className="mx-auto grid max-w-6xl gap-6 rounded-3xl border border-border bg-surface p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8" variant="float">
+      <section className="bg-primary px-5 py-16 text-primary-foreground">
+        <Reveal className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <FaPeopleGroup className="text-2xl text-accent" aria-hidden />
-            <h2 className="mt-4 text-3xl font-black text-secondary">Ready to plan the table?</h2>
-            <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-muted">
-              Start with the live menu, then build a meal with enough curry, rice, sides, and sweets for everyone.
-            </p>
+            <p className="text-xs font-extrabold uppercase tracking-[.14em] text-primary-foreground/72">Ready to plan the table?</p>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight">Start with the live menu and build a meal for everyone.</h2>
           </div>
-          <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-primary px-7 font-black text-primary-foreground hover:bg-primary/90" label="Start an order" />
+          <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-foreground px-7 font-bold text-background hover:bg-foreground/90" label="Start an order" />
         </Reveal>
       </section>
     </>

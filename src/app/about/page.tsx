@@ -1,16 +1,15 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 
-import { FaBowlFood, FaHeart, FaLeaf, FaPeopleGroup } from "react-icons/fa6";
 import OrderOnlineButton from "@/components/OrderOnlineButton";
 import Reveal from "@/components/Reveal";
 import { useSiteContent } from "@/components/SiteContentProvider";
 
 const values = [
-  [FaBowlFood, "Fish at the center", "Mustard, rohu, hilsa, prawns, and rice are the anchors of the Bengali table."],
-  [FaLeaf, "Vegetable balance", "Lentils and vegetables keep the meal grounded and make the curries easier to share."],
-  [FaHeart, "Home-style comfort", "The goal is food that feels generous, familiar, and easy to bring home."],
-  [FaPeopleGroup, "Shared plates", "Bengali meals make sense as a spread, especially for families and groups."],
+  ["Fish at the center", "Mustard, rohu, hilsa, prawns, and rice are the anchors of the Bengali table."],
+  ["Vegetable balance", "Lentils and vegetables bring contrast to the curries and make the meal easier to share."],
+  ["Home-style comfort", "The cooking is generous, familiar, and made for bringing a complete meal home."],
+  ["Shared plates", "Bengali food comes together as a spread, especially for families and groups."],
 ] as const;
 
 export default function AboutPage() {
@@ -24,75 +23,76 @@ export default function AboutPage() {
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-[var(--kitchen-night)] px-5 pb-20 pt-32 text-white">
-        <img src={heroImage} alt="Bengali food" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-30" />
-        <div className="absolute inset-0 -z-10 bg-black/68" />
-        <div className="relative mx-auto max-w-6xl">
-          <p className="text-xs font-black uppercase tracking-[.2em] text-accent">Our table</p>
-          <h1 className="mt-5 max-w-4xl text-5xl font-black sm:text-7xl">Bengali food has a language of its own.</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">
-            Mustard, fish, lentils, seasonal vegetables, rice, and carefully built spice are at the center of the cooking.
-          </p>
-        </div>
+      <section className="relative isolate min-h-[34rem] overflow-hidden px-5 py-28 text-white sm:py-36">
+        <img src={heroImage} alt="Bengali food" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+        <div className="absolute inset-0 -z-10 bg-[rgba(27,19,15,.74)]" />
+        <Reveal className="mx-auto flex min-h-[20rem] max-w-6xl items-end">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-[#f4d28a]">Our table</p>
+            <h1 className="mt-5 text-5xl font-extrabold leading-[0.98] sm:text-7xl">Bengali food has a language of its own.</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">
+              Mustard, fish, lentils, seasonal vegetables, rice, and carefully built spice are at the center of the cooking.
+            </p>
+          </div>
+        </Reveal>
       </section>
 
-      <section className="px-5 py-24">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
-          <Reveal className="overflow-hidden rounded-3xl border border-border bg-surface" variant="float">
-            <img src={fishImage} alt="Bengali fish curry" className="h-[430px] w-full object-cover" />
+      <section className="section-shell">
+        <div className="section-inner grid gap-10 lg:grid-cols-[1fr_.9fr] lg:items-center">
+          <Reveal className="media-frame rounded-lg">
+            <img src={fishImage} alt="Bengali fish curry" className="aspect-[4/5] h-full w-full object-cover" loading="lazy" />
           </Reveal>
           <Reveal>
-            <p className="text-xs font-black uppercase tracking-[.2em] text-accent">What we cook around</p>
-            <h2 className="mt-4 text-4xl font-black text-secondary sm:text-6xl">A full meal, not a single dish.</h2>
-            <p className="mt-5 text-base font-semibold leading-7 text-muted">
+            <p className="eyebrow">What we cook around</p>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">A full meal, not a single dish.</h2>
+            <p className="body-copy mt-5 max-w-xl">
               Bengali food is strongest when the table has contrast: a rich fish curry, plain rice, dal, vegetables, and sweets at the end.
             </p>
           </Reveal>
         </div>
       </section>
 
-      <section className="bg-surface px-5 py-20">
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <p className="text-xs font-black uppercase tracking-[.2em] text-accent">Comfort in every course</p>
-            <h2 className="mt-4 text-4xl font-black text-secondary">The menu is built around familiar Bengali anchors.</h2>
+      <section className="section-shell bg-surface">
+        <div className="section-inner">
+          <Reveal className="max-w-2xl">
+            <p className="eyebrow">Comfort in every course</p>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">The menu is built around familiar Bengali anchors.</h2>
           </Reveal>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {values.map(([Icon, title, body]) => (
-              <Reveal key={title} className="rounded-lg border border-border bg-background p-6" variant="float">
-                <Icon className="text-2xl text-accent" aria-hidden />
-                <h3 className="mt-4 text-2xl font-black text-secondary">{title}</h3>
-                <p className="mt-2 text-sm font-semibold leading-6 text-muted">{body}</p>
-              </Reveal>
+          <div className="mt-10 border-b border-border">
+            {values.map(([title, body]) => (
+              <article key={title} className="grid gap-3 border-t border-border py-5 sm:grid-cols-[11rem_1fr]">
+                <h3 className="text-xl font-extrabold text-secondary">{title}</h3>
+                <p className="body-copy">{body}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+      <section className="section-shell">
+        <div className="section-inner grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <Reveal>
-            <p className="text-xs font-black uppercase tracking-[.2em] text-accent">On the menu</p>
-            <h2 className="mt-4 text-4xl font-black text-secondary sm:text-6xl">Choose a few sections and build a complete table.</h2>
+            <p className="eyebrow">On the menu</p>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-secondary sm:text-5xl">Choose a few sections and build a complete table.</h2>
           </Reveal>
-          <div className="flex flex-wrap gap-3">
+          <Reveal className="flex flex-wrap gap-2 lg:pt-2">
             {categories.map((category) => (
-              <span key={category} className="rounded-full border border-border bg-surface px-4 py-2 font-bold text-secondary">
+              <span key={category} className="rounded-lg border border-border bg-surface px-4 py-2 text-sm font-bold text-secondary">
                 {category}
               </span>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="bg-primary px-5 py-20 text-primary-foreground">
-        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
+      <section className="bg-primary px-5 py-16 text-primary-foreground">
+        <Reveal className="mx-auto grid max-w-6xl gap-6 md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <p className="font-black uppercase tracking-[.18em] text-primary-foreground/70">Ready to eat</p>
-            <h2 className="mt-4 text-4xl font-black">Open the live menu and order the current dishes.</h2>
+            <p className="text-xs font-extrabold uppercase tracking-[.14em] text-primary-foreground/72">Ready to eat</p>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight">Open the live menu and order the current dishes.</h2>
           </div>
-          <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-foreground px-7 font-black text-background hover:bg-foreground/90" label="Explore the live menu" />
-        </div>
+          <OrderOnlineButton className="inline-flex min-h-12 items-center rounded-lg bg-foreground px-7 font-bold text-background hover:bg-foreground/90" label="Explore the live menu" />
+        </Reveal>
       </section>
     </>
   );
